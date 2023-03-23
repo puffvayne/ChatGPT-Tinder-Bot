@@ -24,7 +24,7 @@ cc = OpenCC('s2t')
 TINDER_TOKEN = os.getenv('TINDER_TOKEN')
 
 
-@scheduler.scheduled_job("cron", minute='*/5', second=0, id='reply_messages')
+@scheduler.scheduled_job("cron", minute='*/6', second=0, id='reply_messages')
 def reply_messages():
     tinder_api = TinderAPI(TINDER_TOKEN)
     profile = tinder_api.profile()
