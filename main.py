@@ -39,11 +39,14 @@ def reply_messages():
                 from_user_id = lastest_message.from_id
                 to_user_id = lastest_message.to_id
                 last_message = 'me'
+
             else:
                 from_user_id = lastest_message.to_id
                 to_user_id = lastest_message.from_id
                 last_message = 'other'
+
             sent_date = lastest_message.sent_date
+
             if last_message == 'other' or (sent_date + datetime.timedelta(days=1)) < datetime.datetime.now():
                 content = dialog.generate_input(from_user_id, to_user_id, chatroom.messages[::-1])
                 response = chatgpt.get_response(content)
@@ -53,6 +56,7 @@ def reply_messages():
                         chatroom.send(response[8:], from_user_id, to_user_id)
                     else:
                         chatroom.send(response, from_user_id, to_user_id)
+
                 logger.info(f'Content: {content}, Reply: {response}')
 
 
