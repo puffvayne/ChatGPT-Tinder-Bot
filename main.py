@@ -89,7 +89,7 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.route("/girls", methods=["GET"])
+@app.get("/girls")
 async def view_girls():
     tinder_api = TinderAPI(TINDER_TOKEN)
     girls = []
