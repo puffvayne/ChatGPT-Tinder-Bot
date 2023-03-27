@@ -9,6 +9,7 @@ from src.logger import logger
 from src.ult import get_whitelist
 from opencc import OpenCC
 from flask import render_template
+import pprint
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -96,8 +97,8 @@ async def view_girls():
     for match in tinder_api.matches(limit=50):
         girl = match.person
         girls.append({"id": girl.id, "name": girl.name, "images": girl.images})
+    return pprint.pformat(json.dumps(girls), indent=4)  # works
     # return render_template("girls.html", girls=girls)
-    return json.dumps(girls)
 
 
 if __name__ == "__main__":
