@@ -51,7 +51,7 @@ Do you want to integrate ChatGPT into various chat platforms? This repository te
             - value: `gpt-3.5-turbo`
         3. ChatGPT wants the assistant to play the role of a keyword (currently, no further usage instructions have been officially released, and players can test it themselves).
             - key: `SYSTEM_MESSAGE`
-            - value: `You are a helpful assistant.`
+            - value: `You are a helpful assistant and good at chating with girls.`
         4. Tinder Token:
             - key: `TINDER_TOKEN`
             - value: `[obtained from step one]`

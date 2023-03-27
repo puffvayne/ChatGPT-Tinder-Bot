@@ -51,7 +51,7 @@ ChatGPT 的強大，是否也想要把他串到各個聊天平台呢？這個 Re
             - value: `gpt-3.5-turbo`  
         3. ChatGPT 要讓助理扮演的角色詞（目前官方無釋出更多的使用方法，由玩家自行測試）
             - key: `SYSTEM_MESSAGE`
-            - value: `You are a helpful assistant.`
+            - value: `You are a helpful assistant and good at chating with girls.`
         4. Tinder Token:
             - key: `TINDER_TOKEN`
             - value: `[由步驟一取得]`
