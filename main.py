@@ -8,7 +8,7 @@ from src.dialog import Dialog
 from src.logger import logger
 from src.ult import get_whitelist
 from opencc import OpenCC
-
+from flask import render_template
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -86,6 +86,16 @@ async def shutdown():
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+@app.route("/girls")
+def view_girls():
+    tinder_api = TinderAPI(TINDER_TOKEN)
+    girls = []
+    for match in tinder_api.matches(limit=50):
+        girl = match.person
+        girls.append({"id": girl.id, "name": girl.name, "images": girl.images})
+    return render_template("girls.html", girls=girls)
 
 
 if __name__ == "__main__":
