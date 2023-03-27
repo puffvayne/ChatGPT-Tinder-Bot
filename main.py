@@ -13,6 +13,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 from fastapi import FastAPI
 import uvicorn
+import json
 
 load_dotenv('.env')
 
@@ -88,14 +89,15 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.route("/girls", methods=["GET"])
-def view_girls():
+@app.get("/girls", methods=["GET"])
+async def view_girls():
     tinder_api = TinderAPI(TINDER_TOKEN)
     girls = []
     for match in tinder_api.matches(limit=50):
         girl = match.person
         girls.append({"id": girl.id, "name": girl.name, "images": girl.images})
-    return render_template("girls.html", girls=girls)
+    # return render_template("girls.html", girls=girls)
+    return json.dumps(girls)
 
 
 if __name__ == "__main__":
