@@ -91,7 +91,7 @@ async def root():
 
 
 @app.get("/girls")
-async def view_girls():
+def view_girls():
     tinder_api = TinderAPI(TINDER_TOKEN)
     girls = []
     for match in tinder_api.matches(limit=50):
