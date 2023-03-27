@@ -9,13 +9,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
         .carousel-item {
-            max-height: 80vh;
+            height: 80vh;
         }
 
         .carousel-item img {
-            max-height: 100%;
-            width: auto;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -24,18 +29,37 @@
             flex-direction: column;
             align-items: center;
         }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .card .carousel {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .card-info {
+            padding: 16px;
+        }
+
     </style>
 </head>
 <body>
 <div class="container">
     <div class="gallery-container">
         {% for girl in girls %}
-            <div class="mb-4">
+            <div class="card">
                 <div id="carousel-{{ girl.id }}" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         {% for image in girl.images %}
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                <img src="{{ image }}" class="d-block w-100" alt="{{ girl.name }}">
+                                <img src="{{ image }}" alt="{{ girl.name }}">
                             </div>
                         {% endfor %}
                     </div>
@@ -48,7 +72,9 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <p class="text-center mt-2">{{ girl.id }} # {{ girl.name }}</p>
+                <div class="card-info">
+                    <p class="text-center">{{ girl.id }} # {{ girl.name }}</p>
+                </div>
             </div>
         {% endfor %}
     </div>
