@@ -1,16 +1,19 @@
 import datetime
 import os
+import pathlib
 from src.chatgpt import ChatGPT, DALLE
 from src.models import OpenAIModel
 from src.tinder import TinderAPI
 from src.dialog import Dialog
 from src.logger import logger
+from src.ult import get_whitelist
 from opencc import OpenCC
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 from fastapi import FastAPI
 import uvicorn
+
 load_dotenv('.env')
 
 models = OpenAIModel(api_key=os.getenv('OPENAI_API'), model_engine=os.getenv('OPENAI_MODEL_ENGINE'))
@@ -23,6 +26,9 @@ scheduler = AsyncIOScheduler()
 cc = OpenCC('s2t')
 TINDER_TOKEN = os.getenv('TINDER_TOKEN')
 
+PROJECT_DIR = pathlib.Path(__file__).absolute().parent
+WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
+
 
 @scheduler.scheduled_job("cron", minute='*/6', second=0, id='reply_messages')
 def reply_messages():
@@ -31,7 +37,14 @@ def reply_messages():
 
     user_id = profile.id
 
+    whitelist = get_whitelist(WHITELIST_PATH)
+
     for match in tinder_api.matches(limit=50):
+        girl = match.person
+        if girl.id in whitelist:
+            logger.info(f"skip girl in whitelist: {girl}")
+            continue
+
         chatroom = tinder_api.get_messages(match.match_id)
         lastest_message = chatroom.get_lastest_message()
         if lastest_message:
@@ -57,7 +70,7 @@ def reply_messages():
                     else:
                         chatroom.send(response, from_user_id, to_user_id)
 
-                logger.info(f'Content: {content}, Reply: {response}')
+                logger.info(f'Content: {content}\nReply: {response}\nGirl:\n{girl.id} # {girl.name}')
 
 
 @app.on_event("startup")
