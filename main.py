@@ -12,7 +12,7 @@ from flask import render_template
 import pprint
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 import uvicorn
 import json
@@ -92,14 +92,15 @@ async def root():
 
 
 @app.get("/girls")
-async def view_girls():
+async def view_girls(request: Request):
     tinder_api = TinderAPI(TINDER_TOKEN)
     girls = []
     for match in tinder_api.matches(limit=50):
         girl = match.person
         girls.append({"id": girl.id, "name": girl.name, "images": girl.images})
     # return pprint.pformat(json.dumps(girls), indent=4)  # works
-    return templates.TemplateResponse("girls.html", girls)
+    data = {'request': request, 'girls': girls}
+    return templates.TemplateResponse("girls.html", data)
 
 
 if __name__ == "__main__":
