@@ -13,6 +13,7 @@ import pprint
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.templating import Jinja2Templates
 import uvicorn
 import json
 
@@ -26,8 +27,8 @@ dialog = Dialog()
 app = FastAPI()
 scheduler = AsyncIOScheduler()
 cc = OpenCC('s2t')
+templates = Jinja2Templates(directory="templates")
 TINDER_TOKEN = os.getenv('TINDER_TOKEN')
-
 PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
 
@@ -91,14 +92,14 @@ async def root():
 
 
 @app.get("/girls")
-def view_girls():
+async def view_girls():
     tinder_api = TinderAPI(TINDER_TOKEN)
     girls = []
     for match in tinder_api.matches(limit=50):
         girl = match.person
         girls.append({"id": girl.id, "name": girl.name, "images": girl.images})
     # return pprint.pformat(json.dumps(girls), indent=4)  # works
-    return render_template("girls.html", girls=girls)
+    return templates.TemplateResponse("girls.html", girls)
 
 
 if __name__ == "__main__":
