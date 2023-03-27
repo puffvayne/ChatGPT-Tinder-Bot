@@ -46,6 +46,20 @@
 
         .card-info {
             padding: 16px;
+            cursor: pointer;
+        }
+
+        .copy-toast {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
         }
 
     </style>
@@ -72,12 +86,30 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-info">
+                <div class="card-info" onclick="copyToClipboard('{{ girl.id }} # {{ girl.name }}')">
                     <p class="text-center">{{ girl.id }} # {{ girl.name }}</p>
                 </div>
             </div>
         {% endfor %}
     </div>
 </div>
+<div id="copy-toast" class="copy-toast">Copied to clipboard</div>
+<script>
+    function copyToClipboard(text) {
+        const el = document.createElement('textarea');
+        el.value = text;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        const toast = document.getElementById('copy-toast');
+        toast.style.display = 'block';
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 500);
+    }
+</script>
 </body>
+
 </html>
