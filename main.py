@@ -1,21 +1,20 @@
 import datetime
 import os
 import pathlib
-from src.chatgpt import ChatGPT, DALLE
-from src.models import OpenAIModel
-from src.tinder import TinderAPI
-from src.dialog import Dialog
-from src.logger import logger
-from src.ult import get_whitelist
-from opencc import OpenCC
-from flask import render_template
-import pprint
+
+import uvicorn
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
-import uvicorn
-import json
+from opencc import OpenCC
+
+from src.chatgpt import ChatGPT, DALLE
+from src.dialog import Dialog
+from src.logger import logger
+from src.models import OpenAIModel
+from src.tinder import TinderAPI
+from src.ult import get_whitelist
 
 load_dotenv('.env')
 
@@ -73,7 +72,7 @@ def reply_messages():
                     else:
                         chatroom.send(response, from_user_id, to_user_id)
 
-                logger.info(f'Content: {content}\nReply: {response}\nGirl:\n{girl.id} # {girl.name}')
+                logger.info(f'Content: {content}\nReply -> {response}\nGirl:\n{girl.id} # {girl.name}\n')
 
 
 @app.on_event("startup")
