@@ -18,5 +18,8 @@ ASK_HOOK_UP_MSG_LS = __get_hook_up_msg_ls()
 
 # Class of Modules
 from .person import Person
+from .rec_person import RecPerson
 from .profile import Profile
+from .match import Match
+from .chatroom import PlainChatroom, Chatroom
 from .tinder_api import TinderAPI

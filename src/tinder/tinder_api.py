@@ -1,6 +1,9 @@
+import time
+
 import requests
+import random
 from typing import Union, List, Dict
-from . import TINDER_URL
+from . import TINDER_URL, ASK_HOOK_UP_MSG_LS
 
 
 class TinderAPI:
@@ -9,7 +12,14 @@ class TinderAPI:
         self._headers = {
             'X-Auth-Token': self._token
         }
-        self.chatroom_match_id = list()
+        self.chatroom_match_id_ls = list()
+        profile = self.profile()
+        self.user_name = profile.name
+        self.user_id = profile.id
+
+    def __repr__(self) -> str:
+        s = f"TinderAPI : {self.user_id} - {self.user_name}"
+        return s
 
     def profile(self):
         from .profile import Profile
@@ -46,11 +56,11 @@ class TinderAPI:
             msg = f"failed to get recommendations_v1, Error: {e}"
             print(msg)
 
-    def get_matches(self, limit=15) -> List:
+    def get_matches(self, limit=60) -> List:
         from .match import Match
         url = TINDER_URL + f"/v2/matches?count={limit}"
         data = requests.get(url, headers=self._headers).json()
-        self.chatroom_match_id = list(map(lambda match: match['id'], data['data']['matches']))
+        self.chatroom_match_id_ls = list(map(lambda match: match['id'], data['data']['matches']))
         return list(map(lambda match: Match(match, self), data['data']['matches']))
 
     def _get_msg_data_with_match_id(self, match_id: str) -> Dict:
@@ -88,15 +98,6 @@ class TinderAPI:
         data = requests.post(url, json=body, headers=self._headers).json()
         return data
 
-    def like(self, user_id) -> Dict:
-        try:
-            url = TINDER_URL + f"/like/{user_id}"
-            response = requests.get(url, headers=self._headers)
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            msg = f"failed to like a girl, Error: {e}"
-            print(msg)
-
     def meta(self):
         try:
             url = TINDER_URL + '/v2/meta'
@@ -122,3 +123,25 @@ class TinderAPI:
         except requests.exceptions.RequestException as e:
             msg = f"failed to get remaining likes, Error: {e}"
             print(msg)
+
+    def like(self, user_id) -> Dict:
+        try:
+            url = TINDER_URL + f"/like/{user_id}"
+            response = requests.get(url, headers=self._headers)
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            msg = f"failed to like a girl, Error: {e}"
+            print(msg)
+
+    def ask_hook_up(self, chatroom):
+        from .chatroom import Chatroom
+        chatroom: Chatroom
+        greet_line_ls = random.choice(ASK_HOOK_UP_MSG_LS)
+        for greet_idx, greet_line in enumerate(greet_line_ls):
+            msg_sent_response = chatroom.send(self.user_id, chatroom.person.id, greet_line)
+            print(f"msg_sent_response:\n{msg_sent_response}\n")
+
+            if greet_idx == 0:
+                time.sleep(random.uniform(.5, 1))
+            else:
+                time.sleep(random.uniform(3, 6))

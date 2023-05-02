@@ -14,7 +14,7 @@ class PlainChatroom:
             )
         )
 
-    def send(self, message, from_id, to_id):
+    def send(self, from_id, to_id, message):
         return self._api.send_message(self.match_id, from_id, to_id, message)
 
     def get_latest_message(self):

@@ -1,6 +1,8 @@
 import datetime
 import os
 import pathlib
+import random
+import time
 
 import uvicorn
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -83,17 +85,35 @@ def like_girls():
     if remaining_likes:
         rec_user_ls = tinder_api.get_recommendations()
         for rec_user in rec_user_ls:
-            if rec_user.is_girl:
+            if rec_user.is_girl and remaining_likes > 0:
                 like_res = rec_user.like_her()
-                msg = f"liked {rec_user}, dist: {rec_user.distance_km}, " \
+                msg = f"LIKED {rec_user}, dist: {rec_user.distance_km}, " \
                       f"status: {like_res.get('status')}, " \
                       f"match: {like_res.get('match')}, " \
                       f"like: {like_res.get('likes_remaining')}"
                 print(msg)
-                return
+
+                time.sleep(random.uniform(3, 6))
+                remaining_likes = tinder_api.get_remaining_likes()
+                # return
     else:
         msg = 'No likes left :('
         print(msg)
+
+
+@scheduler.scheduled_job("cron", minute='*/15', second=0, id='ask_hook_up')
+def ask_hook_up():
+    tinder_api = TinderAPI(TINDER_TOKEN)
+    for match in tinder_api.get_matches(limit=60):
+        chatroom = tinder_api.get_chatroom(match)
+        if len(chatroom.messages) == 0:
+            tinder_api.ask_hook_up(chatroom)
+            msg = f"ASKED hook up to {chatroom}\n"
+            print(msg)
+            time.sleep(random.uniform(6, 9))
+        else:
+            msg = f"Chatroom msg is not empty: {chatroom}\n"
+            print(msg)
 
 
 @app.on_event("startup")
