@@ -1,0 +1,3605 @@
+{
+    "meta": {
+        "status": 200
+    },
+    "data": {
+        "client_resources": {
+            "rate_card": {
+                "carousel": [
+                    {
+                        "slug": "unlimited_likes"
+                    },
+                    {
+                        "slug": "boost"
+                    },
+                    {
+                        "slug": "who_sees_you"
+                    },
+                    {
+                        "slug": "passport"
+                    },
+                    {
+                        "slug": "your_profile"
+                    },
+                    {
+                        "slug": "super_like"
+                    },
+                    {
+                        "slug": "undo"
+                    },
+                    {
+                        "slug": "no_ads"
+                    }
+                ]
+            },
+            "plus_screen": [
+                "unlimited_swipes",
+                "boost",
+                "who_you_see",
+                "who_sees_you",
+                "passport",
+                "your_profile",
+                "super_like",
+                "undo",
+                "hide_ads"
+            ],
+            "platinum_paywall_carousel": [
+                "swipe_note",
+                "priority_likes",
+                "priority_messages",
+                "likes_you",
+                "remaining_features",
+                "gold",
+                "plus"
+            ]
+        },
+        "multi_photo": {
+            "enabled": false
+        },
+        "account": {
+            "email_prompt_required": false,
+            "email_prompt_dismissible": false,
+            "email_prompt_show_marketing_opt_in": false,
+            "email_prompt_show_strict_opt_in": false
+        },
+        "sexual_orientations": {
+            "enabled": false,
+            "excluded_orientations": [],
+            "orientations": [],
+            "is_pride_flame_enabled": false
+        },
+        "archive_tutorial_config": {
+            "auto_archive_tutorial_seen_time": -1
+        },
+        "credit_card": {
+            "variant": 2,
+            "price_tos_on_top": false
+        },
+        "room_service": {
+            "room_status_polling_interval_in_secs": "30",
+            "room_user_background_timeout_threshold_in_secs": 3,
+            "group_hangouts_user_ping_threshold_in_secs": 5,
+            "group_hangouts_user_ping_key": "UserPingSignal"
+        },
+        "boost": {
+            "enabled": false,
+            "duration": 1800000,
+            "intro_multiplier": 10,
+            "use_new_copy": false
+        },
+        "super_boost": {
+            "enabled": false,
+            "duration": 10800000,
+            "intro_multiplier": 100,
+            "peak_hours_start_h": 0,
+            "peak_hours_start_m": 0,
+            "peak_hours_duration": 2147483647,
+            "variant": 3,
+            "members_only_text": "Subscribers only.",
+            "p1": false,
+            "entry_gold_home": false,
+            "entry_upgrade": false,
+            "show_discount": true,
+            "show_per_hour": false
+        },
+        "readreceipts": {
+            "enabled": false
+        },
+        "fast_match": {
+            "enabled": true,
+            "preview_minimum_time": 180000,
+            "notif_options": [
+                0,
+                1,
+                3,
+                10
+            ],
+            "notif_defaults": 1,
+            "new_count_fetch_interval": 10000,
+            "boost_new_count_fetch_interval": 2000,
+            "new_count_threshold": 99,
+            "polling_mode": 1,
+            "entry_point": true,
+            "controlla_optimization": false,
+            "secret_admirer": {
+                "enabled": true,
+                "min_likes_count": 5,
+                "max_likes_count": "100",
+                "fetch_secret_admirer_on_card": 8,
+                "reveal_like_variant": 0,
+                "reveal_like_min_likes_count": 10
+            },
+            "use_teaser_endpoint": true,
+            "show_superboost_banner": false
+        },
+        "gold_homepage": {
+            "enabled": false
+        },
+        "top_picks": {
+            "enabled": true,
+            "local_daily_enabled": true,
+            "local_daily_msg": "Your daily Top Picks are ready. 💎 Tap to view.",
+            "local_daily_offsets": {
+                "offset0": -1,
+                "offset1": 32044794,
+                "offset2": 46444794,
+                "offset3": 64444794
+            },
+            "free_daily": false,
+            "num_free_rated_limit": 1,
+            "refresh_interval": 86400000,
+            "lookahead": 7,
+            "post_swipe_paywall": false,
+            "top_picks_categories_enabled": false
+        },
+        "intro_pricing": {
+            "enabled": true
+        },
+        "paywall": {
+            "e1": true,
+            "e2": false,
+            "bouncer_avatar": true,
+            "pbls": false,
+            "show_likes_count_in_bouncer": false
+        },
+        "merchandising": {
+            "gold_v1_enabled": false,
+            "gold_v2_enabled": false,
+            "gamepad_counter_variant": "control"
+        },
+        "recs": {
+            "card_replay": false
+        },
+        "tinder_plus": {
+            "enabled": true,
+            "discount": true
+        },
+        "subscription": {
+            "renewal_banner_title": "Your subscription is about to expire!",
+            "renewal_banner_gold_body": "Tap to continue experiencing Gold",
+            "renewal_banner_plus_body": "Tap to continue experiencing Plus"
+        },
+        "levers": {
+            "platinum.bouncer_paywall_cta_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "swipe_note.max_character_count": {
+                "p_id": "",
+                "value": 140
+            },
+            "superlike.attach_message_rate_limit": {
+                "p_id": "",
+                "value": 1
+            },
+            "storekit_2.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.upsell_modal_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "ads.cadence": {
+                "p_id": "",
+                "value": 20
+            },
+            "profile.profile_home_node_short_video_tooltip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_annuity.likes_annuity_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.messages_between_sponsored_message": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile_detail.is_gold_home_likes_you_entry_point_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.top_nav_v2_dynamic_order": {
+                "p_id": "",
+                "value": "profile,recs,goldHome,matches"
+            },
+            "matches.its_a_match_keyboard_opened": {
+                "p_id": "",
+                "value": false
+            },
+            "session.in_app_rating_consecutive_login_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "out_of_coins_paywall": {
+                "p_id": "",
+                "value": "control"
+            },
+            "profile.minimum_2_pictures": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.merchandising_tooltip_rate_limit_duration_seconds": {
+                "p_id": "",
+                "value": 60
+            },
+            "recs.swipe_shuffler": {
+                "p_id": "",
+                "value": "control"
+            },
+            "dynamic_ui.sparks_quiz_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.sponsored_message_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "experiences.theme_id": {
+                "p_id": "",
+                "value": ""
+            },
+            "platinum.my_likes_entrypoint_upsell_max_views": {
+                "p_id": "",
+                "value": 0
+            },
+            "boost.primetime_merchandising_android": {
+                "p_id": "",
+                "value": "control"
+            },
+            "chat.ready_to_chat_smoke_test_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.relationship_intent_profile_detail": {
+                "p_id": "",
+                "value": false
+            },
+            "explore.curated_card_stack_bio_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_elements.relationship_intent_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile.sparks_quiz_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "feed.timeless_feed": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.yourturn_poke": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.new_google_restore_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "passport.global_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "collectibles.collectibles_edit_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "age_verification.eureka_age_verification_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.is_rosetta_copy_testing_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "recs.hide_detail_profile_view_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.media_moderation_warning": {
+                "p_id": "",
+                "value": "off"
+            },
+            "likes_you.quick_filter_order": {
+                "p_id": "",
+                "value": "distance,passions,bio,verified"
+            },
+            "matches.platinum_upsell_v2_banner_max_likes": {
+                "p_id": "",
+                "value": 3
+            },
+            "identity.emailcollection_autofill_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "recs.main_card_stack_expand_bio_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.checkout_form_variation_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "recs.common_interests_v2": {
+                "p_id": "",
+                "value": "control"
+            },
+            "superlike.reaction_send": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals_home_cta_more_options": {
+                "p_id": "",
+                "value": ""
+            },
+            "safety.safety_center_node_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.sync_swipe_threshold_swipe_type": {
+                "p_id": "",
+                "value": "any"
+            },
+            "permissions.push_soft_prompt_main_text": {
+                "p_id": "",
+                "value": ""
+            },
+            "safety.has_safety_badge": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.message_setting_tooltip": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.safety_nav_menu_variant": {
+                "p_id": "",
+                "value": "control"
+            },
+            "profile_detail.photo_comments_button_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.is_fast_chat_profile_open_available": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.qap_milestone_one_premium_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.back_nav": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.account_reset_variant": {
+                "p_id": "",
+                "value": -1
+            },
+            "paywall.show_bvmp_banner": {
+                "p_id": "",
+                "value": true
+            },
+            "profile_elements.relationship_intent_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "face_to_face.video_chat_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "onboarding.is_post_onboarding_obsidian_v1_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.fast_match_header_coordinator_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.placeholder_rotation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_client.unlock_profile_content": {
+                "p_id": "",
+                "value": "none"
+            },
+            "explore.post_match_attribution_chat_match_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "postmatch.sparkpack_slots": {
+                "p_id": "",
+                "value": 0
+            },
+            "superlike.superlikeable_game_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "gold.upsell_modal_time_interval": {
+                "p_id": "",
+                "value": 172800
+            },
+            "games.emoji_match_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "eventssdk.is_rate_for_all_screens_enabled_ios": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content.is_dynamic_content_liveops_auto_chat_widget_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.google_unified_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals_home_subheader": {
+                "p_id": "",
+                "value": ""
+            },
+            "permissions.push_soft_prompt_secondary_button_title": {
+                "p_id": "",
+                "value": ""
+            },
+            "trust.report_content_message_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.my_likes_entrypoint_upsell_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.vinyl_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "tags.is_tag_media_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.card_stack_preload_all_tappy_media_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.tappy_cloud_m4_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "priority_likes.bottom_sheet_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.top_nav_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.message_reporting_unmatch_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.body_copy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile.descriptor_new_badge_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.swipe_note_in_tappy_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "non_iac_store.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.sparkpack_blur": {
+                "p_id": "",
+                "value": -1
+            },
+            "non_iac_store.plus_benefits": {
+                "p_id": "",
+                "value": "like,rewind,passport,hide_ads"
+            },
+            "chat.is_dm_analytics_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.is_edit_entry_point_refactor_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "settings.multiple_payments_management_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.smoke_tool_campaign_id": {
+                "p_id": "",
+                "value": 0
+            },
+            "media.short_video_upload_length": {
+                "p_id": "",
+                "value": 15
+            },
+            "gold.match_list_recently_active_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "non_iac_store.platinum_benefits": {
+                "p_id": "",
+                "value": "superlike_attach_message,priority_likes,likes_you,boost"
+            },
+            "chat.vinyl_message_display_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.selfie_verification_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "explore.is_online_now_indicator_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "swipe_surge.using_ui_engine": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.gamepad_on_card_alc_haptics_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_elements_interests_min_selection": {
+                "p_id": "",
+                "value": 3
+            },
+            "profile.profile_meter_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "hubble_paywall_instrumentation_variant_v1": {
+                "p_id": "",
+                "value": 0
+            },
+            "contentcreator.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_backend.experiment_key_connection_speed": {
+                "p_id": "",
+                "value": ""
+            },
+            "ads.rewarded_video_bouncer_bottom_drawer_subtitle_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.march_2020_spring_break_prompts": {
+                "p_id": "",
+                "value": false
+            },
+            "superboost.likes_you_upsell_modal_for_vips_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_event_badge_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.is_hubble_dyno_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "gold.new_paywall_colors_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.yourturn_label": {
+                "p_id": "",
+                "value": false
+            },
+            "subscription.has_subscription": {
+                "p_id": "",
+                "value": false
+            },
+            "app.reporting_v3_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "chat.placeholder_rotation_suggestive_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "pin_chat.is_send_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.selective_promo_ndc_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.message_reporting_tooltip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.match_list_one_click_purchase": {
+                "p_id": "",
+                "value": false
+            },
+            "notification_home.dynamic_banner_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.tenor_sticker_message_display_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "chat.post_message_worker_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "subscription.renewal_banner_duration": {
+                "p_id": "",
+                "value": 0
+            },
+            "core.vault_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "media.short_video_viewing_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_meter_video_red_dot_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "face_to_face.video_chat_moderation_lookback": {
+                "p_id": "",
+                "value": 4
+            },
+            "mm.show_settings": {
+                "p_id": "",
+                "value": false
+            },
+            "paywall.dynamic_super_like": {
+                "p_id": "",
+                "value": false
+            },
+            "paywalls.show_consumable_fp": {
+                "p_id": "",
+                "value": ""
+            },
+            "plus.paywall_color_test_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "googleplaybilling.process_death_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "dynamic_content.is_dynamic_content_liveops_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.fireboarding_mode": {
+                "p_id": "",
+                "value": "control"
+            },
+            "recs.profile_suppression_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.contextual_connections_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.message_undo_url": {
+                "p_id": "",
+                "value": "https://static-assets.gotinder.com/ays/areyousure_v1.tsv"
+            },
+            "stories.is_snapchat_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals.rewards_program": {
+                "p_id": "",
+                "value": "REFERRER_SUPERLIKE_10_ONLY"
+            },
+            "postmatch.yourturn_label_color_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "boost.likes_you_merchandising_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "recs.is_tappy_autoadvancing": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.message_reporting_bottomsheet_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.quick_access_preferences": {
+                "p_id": "",
+                "value": "control"
+            },
+            "recs.profile_tappy_pages_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.fast_chat_max_auto_registrations": {
+                "p_id": "",
+                "value": -1
+            },
+            "merchandising.recs_card_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "safety.message_undo_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "gold.recently_liked_gold_promotion_variant": {
+                "p_id": "",
+                "value": 2
+            },
+            "purchases.secret_admirer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.gold_bouncer_paywall_cta_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superboost.likes_you_cta_for_vips_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.ready_to_chat_smoke_test_modal_body_copy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "likes_you.cta_button_copy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "recs.is_merge_rec_like_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.noonlight_confirmation": {
+                "p_id": "",
+                "value": "original"
+            },
+            "profile.client_side_account_reset_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.accidental_modal_entry_point": {
+                "p_id": "",
+                "value": "swipe_up"
+            },
+            "recs.is_pride_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_elements.relationship_intent_preferences_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_freebie.boost_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "paywall.show_terms_for_croatia": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.is_edit_profile_v2_analytics_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.tappy_v2_5_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_client.quick_distance_slider": {
+                "p_id": "",
+                "value": "control"
+            },
+            "recs_client.active_state_label": {
+                "p_id": "",
+                "value": "online_now"
+            },
+            "chat.track_player_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.sync_swipe_threshold_minimum_swipes_": {
+                "p_id": "",
+                "value": 1
+            },
+            "referrals_home_body": {
+                "p_id": "",
+                "value": ""
+            },
+            "chat.message_reporting_confirmation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "swipe_surge.live_count_available": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.card_stack_layout_renderer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.upsell_common_interests_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.ready_to_chat_smoke_test_tile_copy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile.prompts_v2_tappy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "superlike.merchandising_tooltip_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "experiences.is_post_live_count_available": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.credit_card_launcher_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "face_to_face.video_chat_moderation_percentage": {
+                "p_id": "",
+                "value": 0.5
+            },
+            "recommendations.is_recs_network_perf_enabled_ios": {
+                "p_id": "",
+                "value": false
+            },
+            "face_to_face.video_chat_moderation_threshold": {
+                "p_id": "",
+                "value": 0.9
+            },
+            "explore.catalog_swiftui_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "collectibles.should_display_new_badge": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.selfie_verification_requested_check_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.bumper_sticker_native_update_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "reporting.reporting_v3_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "feed.matches_tab_is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "connections_explore.post_match_attribution_profile_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "pin_chat.is_receive_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.bottom_nav_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_meter_v2_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "dynamic_content.is_dynamic_content_liveops_enabled_swipe_surge": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_fire_v2_skippable": {
+                "p_id": "",
+                "value": true
+            },
+            "safety.message_undo_message_count": {
+                "p_id": "",
+                "value": 3
+            },
+            "events.is_data_loss_instrumentation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.likes_feedback_banner_variant": {
+                "p_id": "",
+                "value": "control"
+            },
+            "superlike.upsell_high_rsrr_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.inline_suggestions_box_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "app_service.thread_safe_app_state_status": {
+                "p_id": "",
+                "value": "disabled"
+            },
+            "session.ui_engine_theme_id_dark": {
+                "p_id": "",
+                "value": ""
+            },
+            "feed.reactions_v2": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.alibi_deeplink_waiting_period": {
+                "p_id": "",
+                "value": 1440
+            },
+            "obsidian.dark_mode_available": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.ready_to_chat_smoke_test_modal_title_copy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "discovery.video_position_experiment": {
+                "p_id": "",
+                "value": "control"
+            },
+            "discovery.swipe_note_in_tappy_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.noonlight_timelinetool": {
+                "p_id": "",
+                "value": "none"
+            },
+            "recs_client.quick_distance_slider_initial_position": {
+                "p_id": "",
+                "value": 0.1
+            },
+            "obsidian.chat_color_updates": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.prompts_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "celebrate_first.celebrate_first_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "onboarding.is_fireboarding_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "swipe_note.entry_point": {
+                "p_id": "",
+                "value": 0
+            },
+            "mm.is_mm_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.presence_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile.discovery_preferences_descriptors_suppression_list": {
+                "p_id": "",
+                "value": "de_30,de_31,de_37,de_38"
+            },
+            "profile.profile_meter_video_source_badge_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "app.use_gcd_lock_for_kvs": {
+                "p_id": "",
+                "value": true
+            },
+            "subscription.renewal_banner_threshold": {
+                "p_id": "",
+                "value": 0
+            },
+            "safety.safety_center_garbo_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "spotify.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.charm_contextual_nav_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.discounting_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "reporting.reporting_v3_feed_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "identity.friends_of_friends": {
+                "p_id": "",
+                "value": 0
+            },
+            "superlike.merchandising_tooltip_duration_seconds": {
+                "p_id": "",
+                "value": 3
+            },
+            "gold.promote_after_match_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "obsidian.dark_mode_opt_in": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.noonlight_chatbanner": {
+                "p_id": "",
+                "value": "original"
+            },
+            "gold.promote_after_match_path_1": {
+                "p_id": "",
+                "value": "https://images-ssl.gotinder.com/6d3d228f-2641-40aa-a90f-acbf03b4d213/84x106_fa02c4bd-dd55-4667-a1ea-cd8a5141828f.jpg"
+            },
+            "chat.contact_card_message_display_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.profile_badges_order": {
+                "p_id": "",
+                "value": ""
+            },
+            "top_picks.local_daily_offset": {
+                "p_id": "",
+                "value": "offset2"
+            },
+            "gold.new_likes_modals": {
+                "p_id": "",
+                "value": 1
+            },
+            "trust.eu_messaging_consent_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "revenue.recommended_recs_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "app.phoenix_test_lever": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_client.unlock_profile_content_bio": {
+                "p_id": "",
+                "value": "none"
+            },
+            "boost.upsell_modal_likes_threshold": {
+                "p_id": "",
+                "value": 4
+            },
+            "settings.compose_sections": {
+                "p_id": "",
+                "value": ""
+            },
+            "ads.cadence_source": {
+                "p_id": "",
+                "value": "client"
+            },
+            "connections_explore.post_match_attribution_chat_match_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "ads.group": {
+                "p_id": "",
+                "value": 0
+            },
+            "paywall.gold_subscription_carousel_fp_cta": {
+                "p_id": "",
+                "value": true
+            },
+            "session.top_nav_v1_5_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_rate_for_all_screens_enabled_ios": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content.is_dynamic_content_liveops_chat_widget_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "controlla_m2.mini_merch_card": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_freebie": {
+                "p_id": "",
+                "value": 0
+            },
+            "my_type.quiz_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.settings_paywall_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "chat.suggestions_empty_chat_ui_variant": {
+                "p_id": "",
+                "value": true
+            },
+            "recs.bio_creation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "media.short_video_upload_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "swipe_surge.is_swipe_surge_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.server_provided_media_ids_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "explore.catalog_version": {
+                "p_id": "",
+                "value": 0
+            },
+            "safety.noonlight_intro": {
+                "p_id": "",
+                "value": "original"
+            },
+            "purchases.gold_paywall_gradient_colors": {
+                "p_id": "",
+                "value": "control"
+            },
+            "profile.meme_prompts_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.highlights_exit_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "gold.matches_gold_home_link": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile_detail.is_my_likes_entry_point_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "incognito.settings_variant_android": {
+                "p_id": "",
+                "value": "v1"
+            },
+            "unlimited_likes.in_app_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.subscription_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "meta.superlike_alc_create_date_threshold": {
+                "p_id": "",
+                "value": 14
+            },
+            "chat.post_match_gifting_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.top_nav_v2_swipe_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content_offer_modals.is_offer_modals_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals_home_header": {
+                "p_id": "",
+                "value": ""
+            },
+            "plus.ads_upsell": {
+                "p_id": "",
+                "value": 2
+            },
+            "gold.match_list_intro_offer_banner": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.celebrate_first_like_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "postmatch.sparkpack_refresh": {
+                "p_id": "",
+                "value": 0
+            },
+            "paywall.single_use_sub_purchase_terms_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.suppress_android_lowend_devices": {
+                "p_id": "",
+                "value": false
+            },
+            "session.in_app_rating_consecutive_login_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile_detail.is_recs_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "reporting.report_dynamic_tree_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_client.can_use_online_now_status_quo": {
+                "p_id": "",
+                "value": true
+            },
+            "profile_detail.swipe_note_send_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.wallet_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.hide_detail_profile_view_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "boost.primetime_merchandising": {
+                "p_id": "",
+                "value": ""
+            },
+            "reply_reminder.swipe_count": {
+                "p_id": "",
+                "value": -1
+            },
+            "reporting.reporting_v3_chat_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.new_matches_portrait_size_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.google_programmatic_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.hubble_paywall_instrumentation_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "trust.selfie_intro_variant": {
+                "p_id": "",
+                "value": "variant2"
+            },
+            "ads.matchlist_ads_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.filtering_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.render_empty_tappy_pages_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.banner_wait_time_minutes": {
+                "p_id": "",
+                "value": 10
+            },
+            "age_verification.global_age_verification": {
+                "p_id": "",
+                "value": "none"
+            },
+            "two_coins": {
+                "p_id": "",
+                "value": "two_coins"
+            },
+            "platinum.match_list_upsell_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "gold.paywall_gradient_colors": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile.share_to_matches": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.fan_first_backfill": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.deep_link_ads_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.profile_elements_interests_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "identity.email_collection_prompt": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.require_prepurchase_legal_agreement": {
+                "p_id": "",
+                "value": false
+            },
+            "bouncer.bouncer_bypass_modal_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "revenue.is_premium_preferences_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.is_hubble_event_tracker_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.is_recs_hubble_instrumentation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content.is_dynamic_content_liveops_chat_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.top_nav_v1_5": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.tappy_in_empty_chat_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.timeless_empty_chat": {
+                "p_id": "",
+                "value": false
+            },
+            "is_dynamic_content_liveops_enabled_swipe_surge": {
+                "p_id": "",
+                "value": false
+            },
+            "controlla.redesign_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "iac.iac_daily_bonus": {
+                "p_id": "",
+                "value": 0
+            },
+            "media.min_duration_to_retain_after_discard": {
+                "p_id": "",
+                "value": 1000
+            },
+            "safety.botheryes": {
+                "p_id": "",
+                "value": "control"
+            },
+            "revenue.subscription_management_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.sync_swipe_online_status_expiration_seconds": {
+                "p_id": "",
+                "value": 120
+            },
+            "profile_detail.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.empty_chat_openers_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "ads.insights_params": {
+                "p_id": "",
+                "value": true
+            },
+            "revenue.products_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "pin_chat.chat_auto_present_paywall_interval": {
+                "p_id": "",
+                "value": 86400000
+            },
+            "products.offering_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.swipe_shuffler_threshold_female": {
+                "p_id": "",
+                "value": 20
+            },
+            "dynamic_content_modals.is_modals_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "revenue.headless_global_purchase_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_recs_network_perf_enabled_ios": {
+                "p_id": "",
+                "value": false
+            },
+            "app.is_app_badge_new_convos_only_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_recs_network_perf_enabled_android": {
+                "p_id": "",
+                "value": true
+            },
+            "swipe_tutorial_end_card_superlike": {
+                "p_id": "",
+                "value": ""
+            },
+            "gold.promote_after_match_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.cta_copy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "recs.is_settings_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.chat_shield_fab_message_controls_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "feed.feed_on_discovery": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_bullseye_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.message_undo_prompt_count": {
+                "p_id": "",
+                "value": 10
+            },
+            "explore.domain_allowlist": {
+                "p_id": "",
+                "value": "https://tinder.com,https://lyft.com,tinder.com,lyft.com,www.lyft.com,www.tinder.com,explore,tinderu,goldHome,tinder.com,lyft.com"
+            },
+            "profile.media_service_migration_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.quick_filters_order": {
+                "p_id": "",
+                "value": "distance,passions,bio,verified"
+            },
+            "profile.profile_elements_interests_max_selection": {
+                "p_id": "",
+                "value": 5
+            },
+            "boost.upsell_modal_time_interval": {
+                "p_id": "",
+                "value": 86400
+            },
+            "chat.is_typing_indicator_morph_animation_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "passport.global_modal_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.n_media_number": {
+                "p_id": "",
+                "value": 18
+            },
+            "session.ui_engine_theme_id_light": {
+                "p_id": "",
+                "value": ""
+            },
+            "trust.selfie_verification_facemap_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "sub_merchandising_page.desktop_is_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.all_in_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "revenue.headless_purchase_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_v1_analytics_deprecated": {
+                "p_id": "",
+                "value": false
+            },
+            "age_verification.post_onboarding_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ios_hubble_recs_reate": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.card_stack_media_short_video_buffer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.improve_boost_celebration_modal": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.message_controls_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.is_hubble_recs_rate_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "gold.first_like_swipe_count": {
+                "p_id": "",
+                "value": 45
+            },
+            "gold.upsell_modal_rate_limit_value": {
+                "p_id": "",
+                "value": 1
+            },
+            "recs.card_stack_media_buffer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "identity.exclusion_list_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.in_app_camera": {
+                "p_id": "",
+                "value": false
+            },
+            "subscription_offer.is_retention_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.can_view_descriptors": {
+                "p_id": "",
+                "value": false
+            },
+            "bouncer.bouncer_bypass_variant": {
+                "p_id": "",
+                "value": "control"
+            },
+            "recs.main_card_stack_profile_detail_card_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "permissions.push_soft_prompt_primary_button_title": {
+                "p_id": "",
+                "value": ""
+            },
+            "safety.contact_exchange_messaging_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.is_typing_indicator_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "incognito.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.gamepad_vertical_like": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.descriptors_v2_variant": {
+                "p_id": "",
+                "value": 1
+            },
+            "recs.bio_creation_limit": {
+                "p_id": "",
+                "value": 0
+            },
+            "swipe_note.receive": {
+                "p_id": "",
+                "value": false
+            },
+            "is_new_user_badge_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "revenue.california_cc_checkbox": {
+                "p_id": "",
+                "value": true
+            },
+            "rooms.fast_chat_allow_expanded_registration_preferences": {
+                "p_id": "",
+                "value": false
+            },
+            "app.is_analytics_gzip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.prompts_cta": {
+                "p_id": "",
+                "value": -1
+            },
+            "chat.self_archived_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.new_likes_tooltip_default_color_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "swipe_surge.theme_id": {
+                "p_id": "",
+                "value": ""
+            },
+            "postmatch.highlights_snooze_timer": {
+                "p_id": "",
+                "value": 8
+            },
+            "safety.message_undo_prompt": {
+                "p_id": "",
+                "value": "control"
+            },
+            "age_verification.tuscon_test": {
+                "p_id": "",
+                "value": "off"
+            },
+            "dynamic_content.is_dynamic_content_liveops_match_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_secret_admirer_entry_point_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.paywall_ordering_variant": {
+                "p_id": "",
+                "value": "superlike_attach_message,priority_likes,likes_you,upsell_features"
+            },
+            "platinum.subscription_discount_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "passport.global_modal_image": {
+                "p_id": "",
+                "value": "https://inboxcrm-ssl.gotinder.com/93b9e2ee-1ce1-4db6-bd6a-08023219ca3a.jpeg"
+            },
+            "matches_search_bar_hidden": {
+                "p_id": "",
+                "value": false
+            },
+            "feed.feed_reactions_v2": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.selfie_v2_education_prompt": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.google_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_client.online_state_duration": {
+                "p_id": "",
+                "value": 7200
+            },
+            "devon_test_lever": {
+                "p_id": "",
+                "value": true
+            },
+            "experiences.modal_version": {
+                "p_id": "",
+                "value": 0
+            },
+            "subscription_offer.retention_auto_open_interval": {
+                "p_id": "",
+                "value": 0
+            },
+            "recs.common_interests_v2_second_unit_visible": {
+                "p_id": "",
+                "value": false
+            },
+            "onboarding.scripted_onboarding": {
+                "p_id": "",
+                "value": "control"
+            },
+            "superlike.swipe_up_disabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.priority_likes_swipe_right_threshold": {
+                "p_id": "",
+                "value": 10
+            },
+            "trust.selfie_recs_tooltip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "plus.replace_paywall_with_platinum_subscription_discount": {
+                "p_id": "",
+                "value": false
+            },
+            "experiences.is_profile_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_swipe_note_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.get_likes_upsell_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "explore.batch_get_themes_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.yourturn_first_message_incentive": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.dollar_boost_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "tinder_u.verification_method": {
+                "p_id": "",
+                "value": "email"
+            },
+            "profile.media_moderation_warning_threshold": {
+                "p_id": "",
+                "value": 0.9
+            },
+            "incognito.settings_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "recs.bio_creation_swipes_interval": {
+                "p_id": "",
+                "value": 0
+            },
+            "recs.is_analytics_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.unified_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_short_video_tooltip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.composeflow_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.quick_filter_passions": {
+                "p_id": "",
+                "value": "it_54,it_7,it_9"
+            },
+            "profile.custom_gender_available": {
+                "p_id": "",
+                "value": false
+            },
+            "in_app_review.enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.selfie_verification_group_photo_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.icon_share_button_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.is_superlikeable_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.election_entry_point_new_matches_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.controlla_order": {
+                "p_id": "",
+                "value": "platinum,gold,boost,superLike,passport,profileControl,rewind,unlimitedLikes"
+            },
+            "recs.tappy_items_governor": {
+                "p_id": "",
+                "value": -1
+            },
+            "profile.profile_meter_home_video_tooltip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.attach_message_time_limit_sec": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile.media_moderation_warning_video_fps": {
+                "p_id": "",
+                "value": 2
+            },
+            "profile.media_upload_ttl": {
+                "p_id": "",
+                "value": 86400
+            },
+            "core.south_korea_consents_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.highlights_in_chat": {
+                "p_id": "",
+                "value": false
+            },
+            "bouncer.show_refresh_timer": {
+                "p_id": "",
+                "value": true
+            },
+            "chat.is_profile_in_empty_chat_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.is_nearby_quick_filter_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.is_polling_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "explore.is_compose_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "churn.auto_renewal_toggle": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.up_to_label_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "chat.dicebreaker_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "paywall.terms_of_service_type": {
+                "p_id": "",
+                "value": "regular"
+            },
+            "identity.email_marketing_opt_out_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.google_custom_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.is_hubble_logo_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "gold.promote_after_match_path_2": {
+                "p_id": "",
+                "value": "https://images-ssl.gotinder.com/e17ffde7-8002-495d-a04b-4caac4a4bafd/84x106_364cbf6d-f7a1-425d-9fc6-8e1b47babe24.jpg"
+            },
+            "dynamic_content.is_dynamic_content_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.is_yammer_recommended_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "session.bottom_nav_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "my_type.intro_modal_time_interval": {
+                "p_id": "",
+                "value": 259200
+            },
+            "chat.compose_dm_tooltip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.contact_card_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_client.online_state_label": {
+                "p_id": "",
+                "value": "online_now"
+            },
+            "trust.report_content_photo_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "face_to_face.video_chat_moderation_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "session.charm_contextual_nav_profile_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.swipe_shuffler_threshold_male": {
+                "p_id": "",
+                "value": 10
+            },
+            "gold.banner_settings_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "ads.fan_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.ban_screens_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "obsidian.dark_mode_background_swap": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.reaction_receive": {
+                "p_id": "",
+                "value": false
+            },
+            "paywall.show_terms_with_refund": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.is_fast_chat_available": {
+                "p_id": "",
+                "value": false
+            },
+            "paywall.localized_boost_text_index": {
+                "p_id": "",
+                "value": 0
+            },
+            "gold.intro_pricing_android_refactor_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.merchandising_media_views_threshold": {
+                "p_id": "",
+                "value": 3
+            },
+            "account.profile_manual_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "postmatch.days_to_wave_enabled_new_matches": {
+                "p_id": "",
+                "value": -1
+            },
+            "superlike.merchandising_tooltip_swipe_trigger_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.message_processing_consent_modal_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.matchlist_rewrite": {
+                "p_id": "",
+                "value": false
+            },
+            "iac.iac_coin_info_settings": {
+                "p_id": "",
+                "value": false
+            },
+            "iac.store_catalog_coin_image_urls": {
+                "p_id": "",
+                "value": "https://images-ssl.gotinder.com/product_images/coin/coin_0.png,https://images-ssl.gotinder.com/product_images/coin/coin_1.png,https://images-ssl.gotinder.com/product_images/coin/coin_2.png,https://images-ssl.gotinder.com/product_images/coin/coin_3.png,https://images-ssl.gotinder.com/product_images/coin/coin_4.png,https://images-ssl.gotinder.com/product_images/coin/coin_5.png"
+            },
+            "safety.message_undo_bottom_sheet_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.its_a_match_x_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.custom_gender_country_key": {
+                "p_id": "",
+                "value": "USA"
+            },
+            "recs.photo_suppression_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile.bumper_sticker_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content.is_dynamic_content_liveops_live_counter_enabled_swipe_surge": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.overflow_bottom_sheet_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.tool_tip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.verification_bottom_sheet": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.upsell_rate_limit_unit": {
+                "p_id": "",
+                "value": "SESSION"
+            },
+            "session.contextual_nav_shield_matchlist_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content.is_dynamic_content_liveops_live_counter_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "app.is_notification_service_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.edit_profile_media_grid_add_button": {
+                "p_id": "",
+                "value": true
+            },
+            "events.sdk_recs_hubble_is_enabled_web": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.google_billing_new_sub_model_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "purchase.google_play_default_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "discovery.init_system_volume_in_background_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "media.min_buffer_duration_to_start": {
+                "p_id": "",
+                "value": 2000
+            },
+            "chat.empty_chat_suggestions_box_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_meter_grid_video_tooltip_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.tappy_bio_line_limit_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "my_type.enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.is_new_passion_copy_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.new_media_error_state_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.gamepad_on_card_shimmer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.message_undo_loss_frame": {
+                "p_id": "",
+                "value": true
+            },
+            "experiences.minimum_live_count": {
+                "p_id": "",
+                "value": 99999996
+            },
+            "california_cc_checkbox": {
+                "p_id": "",
+                "value": "enabled"
+            },
+            "recs.tappy_cloud_v2_dynamic_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.attach_message_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.global_mode_multi_language_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "safety.bothercopy": {
+                "p_id": "",
+                "value": "share"
+            },
+            "recs_backend.experiment_key_revenue_is_premium_preferences_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.exit_confirmation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "paywall.localized_boost_region": {
+                "p_id": "",
+                "value": ""
+            },
+            "recs.age_dealbreaker_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.card_stack_media_buffer_size": {
+                "p_id": "",
+                "value": 8
+            },
+            "matches.platinum_upsell_v2_banner_lifetime_cap": {
+                "p_id": "",
+                "value": 3
+            },
+            "age_verification.enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "media.bandwidth_fraction": {
+                "p_id": "",
+                "value": 0.75
+            },
+            "chat.timeless_chat": {
+                "p_id": "",
+                "value": false
+            },
+            "settings.oss_screen_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "revenue.duplicate_consumable_check": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_bumper_sticker_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_home_node_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "onboarding.tinder_rules_on": {
+                "p_id": "",
+                "value": false
+            },
+            "identity.google_phase_2_cutover": {
+                "p_id": "",
+                "value": false
+            },
+            "face_to_face.consent_funnel": {
+                "p_id": "",
+                "value": "bottom"
+            },
+            "dynamic_ui.descriptors_v2_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "feed.messages_is_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "swipe_note.send_copy_v_2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.charm_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.in_app_rating_consecutive_login_days": {
+                "p_id": "",
+                "value": 7
+            },
+            "dionysus.reactions_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "experiences.are_highlights_available": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.tappy_autoadvance_seconds": {
+                "p_id": "",
+                "value": 5
+            },
+            "analytics.purchase_flow_caching_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "sub_merchandising_page.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.chat_shield_fab_safety_center_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "superlike.profile_merchandising_tooltip_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "recs.is_new_user_badge_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "subscription_offer.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "my_type.quiz_json_url": {
+                "p_id": "",
+                "value": "https://tinderphotos.s3.amazonaws.com/just-for-you/myTypeQuiz.json"
+            },
+            "app.test_account_reset_targeting": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_chat_entry_point_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.presence_fetch_throttle_minutes": {
+                "p_id": "",
+                "value": 5
+            },
+            "profile.edit_tab_default_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "controlla.termed_user_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.giphy_pingback_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.fast_chat_theme_id": {
+                "p_id": "",
+                "value": ""
+            },
+            "boost.super_boost_v3_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "is_yammer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "iac.per_unit_pricing_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "chat.message_reporting_message_count": {
+                "p_id": "",
+                "value": 3
+            },
+            "ads.google_open_auction_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.platinum_upsell_targeting": {
+                "p_id": "",
+                "value": "gold"
+            },
+            "boost.paywall_redesign": {
+                "p_id": "",
+                "value": "control"
+            },
+            "experiences.is_live_count_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "revenue.sub_tier_optimizations_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.message_reporting_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.photo_uploading_indicator_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "postmatch.is_matches_observer_refactor_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "catalog_page.catalog_nav_type": {
+                "p_id": "",
+                "value": "control"
+            },
+            "pin_chat.nudge_sender_last_message_age": {
+                "p_id": "",
+                "value": 86400
+            },
+            "recs.geo_boundaries_nav_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.recent_likes_caching_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "app_service.is_thread_safe_app_state_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "premium_discovery.profile_elements_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "gold.promote_after_match_modal_frequency": {
+                "p_id": "",
+                "value": 1
+            },
+            "profile_detail.is_top_picks_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "plus.upsell_trigger_ads_count": {
+                "p_id": "",
+                "value": 0
+            },
+            "collectibles.collectibles_view_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "unlimited_likes.in_app_time_period": {
+                "p_id": "",
+                "value": 86400
+            },
+            "account_deletion_full_page": {
+                "p_id": "",
+                "value": false
+            },
+            "my_type.intro_modal_nth_swipe_count": {
+                "p_id": "",
+                "value": 10
+            },
+            "is_live_count_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.icebreakers_cta": {
+                "p_id": "",
+                "value": -1
+            },
+            "purchases.controlla_tile_order": {
+                "p_id": "",
+                "value": "control"
+            },
+            "chat.yourturn_label": {
+                "p_id": "",
+                "value": false
+            },
+            "account.is_profile_manual_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recommendations.is_recs_network_perf_enabled_android": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.api_refactor_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content.is_survey_modal_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.cell_style": {
+                "p_id": "",
+                "value": 0
+            },
+            "postmatch.postmatch_tab_order": {
+                "p_id": "",
+                "value": "chat,connect"
+            },
+            "revenue.is_offerings_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals_home_cta_invite_contacts": {
+                "p_id": "",
+                "value": ""
+            },
+            "purchases.google_billing_upgrade_prorated_price_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.is_clean_new_media_service_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "feed.feed_first": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.user_cell_blur_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "explore.post_match_attribution_profile_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "matches.tappy_in_iam_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "boost.compound_boost_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.sparkpack_type": {
+                "p_id": "",
+                "value": 0
+            },
+            "feed.reactions_set": {
+                "p_id": "",
+                "value": 1
+            },
+            "chat.message_reporting_prompt_count": {
+                "p_id": "",
+                "value": 10
+            },
+            "boost.zero_likes_promote_boost": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.relationship_intent_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "media.min_time_buffer_reevaluation": {
+                "p_id": "",
+                "value": 3000
+            },
+            "matches.rewrite_chat_scrolling_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.highlights_num_of_hides": {
+                "p_id": "",
+                "value": 3
+            },
+            "app.is_data_service_background_task_enabled_for_saves": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.replay_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platform.web_payment_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "safety.chat_reporting_menu_options": {
+                "p_id": "",
+                "value": "report_unmatch"
+            },
+            "chat.tenor_sticker_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.hide_detail_profile_view_v2_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "chat.urgency_feature": {
+                "p_id": "",
+                "value": 1
+            },
+            "rooms.is_sync_swipe_available": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.relationship_intent_preferences_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.alibi_deeplink_tries": {
+                "p_id": "",
+                "value": 3
+            },
+            "profile.descriptors_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.days_between_sponsored_message": {
+                "p_id": "",
+                "value": 0
+            },
+            "selfie_verification_post_onboarding_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.merchandising_tooltip_swipe_threshold": {
+                "p_id": "",
+                "value": 50
+            },
+            "profile_detail.is_interests_section_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "gold.carousel_variant": {
+                "p_id": "",
+                "value": 2
+            },
+            "chat.archiving_indicator": {
+                "p_id": "",
+                "value": 1
+            },
+            "recs.gamepad_vertical": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.voice_messages_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "gold.emphasize_new_likes_in_tooltip_and_gold_home": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals_home_cta_copy": {
+                "p_id": "",
+                "value": ""
+            },
+            "subscription.is_renewal_banner_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "bitmoji.bitmoji_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.distance_on_matchlist": {
+                "p_id": "",
+                "value": "off"
+            },
+            "ads.fan_placement_id": {
+                "p_id": "",
+                "value": "464891386855067_2256474627696725"
+            },
+            "postmatch.connect_prompts": {
+                "p_id": "",
+                "value": 0
+            },
+            "churn.cancellation_survey_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.hide_detail_profile_view_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "discovery.high_quality_image_experiment": {
+                "p_id": "",
+                "value": "control"
+            },
+            "feed.is_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "reporting.reporting_v3_match_list_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "core.terms_of_service_version": {
+                "p_id": "",
+                "value": "disabled"
+            },
+            "platinum.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_experiences_section_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.out_of_recs_upsell_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "is_hubble_dyno_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.fast_chat_profile_blur_segments": {
+                "p_id": "",
+                "value": -1
+            },
+            "purchase.show_payment_options": {
+                "p_id": "",
+                "value": false
+            },
+            "pricing.show_weekly_savings": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.new_google_formats_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.priority_likes_modal_variant": {
+                "p_id": "",
+                "value": 2
+            },
+            "platinum.priority_likes_modal_time_interval": {
+                "p_id": "",
+                "value": 28800
+            },
+            "dynamic_content.is_dynamic_content_liveops_dark_theme_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals.give_get_referrer_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "gold.new_likes_insendio_modal_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.attribution_suppression_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.themes_available": {
+                "p_id": "",
+                "value": true
+            },
+            "incognito.upsell_variant": {
+                "p_id": "",
+                "value": "plus"
+            },
+            "platinum.my_likes_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "media.max_duration_quality_decrease": {
+                "p_id": "",
+                "value": 3000
+            },
+            "profile.smart_bio_frequency_variant": {
+                "p_id": "",
+                "value": "control"
+            },
+            "safety.noonlight_rollout": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_celebrate_first_like_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.edit_profile_media_grid_paragraph": {
+                "p_id": "",
+                "value": true
+            },
+            "paywall.dynamic_paywalls_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.message_reactions_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.skadnetwork_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.days_to_wave_enabled_messages": {
+                "p_id": "",
+                "value": -1
+            },
+            "platinum.match_list_upsell_likes_threshold": {
+                "p_id": "",
+                "value": 0
+            },
+            "chat.auto_archive_days": {
+                "p_id": "",
+                "value": -1
+            },
+            "my_type.outro_duration": {
+                "p_id": "",
+                "value": 2
+            },
+            "profile.content_creator_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "gold.new_likes_modals_frequency": {
+                "p_id": "",
+                "value": 0
+            },
+            "reporting.reporting_v3_inappropriate_video_chat_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.gif_trending_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "gold.modal_suppression_is_on": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.video_chat_dynamic_delivery_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.tenor_gif_provider_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_client.dynamic_bouncer_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "app.is_memory_optimization_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "discovery.discovery_disabled_node_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.report_chat_menu_item_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "platinum.match_list_recently_active_platinum_upsell_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.gold_home_entry_type": {
+                "p_id": "",
+                "value": "discovery_top_toggle_entrypoint"
+            },
+            "matches.its_a_match_message_bubbles_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "permissions.push_soft_prompt_detail_text": {
+                "p_id": "",
+                "value": ""
+            },
+            "platinum.match_list_upsell_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "read_receipts.enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.sdk_paywall_hubble_is_enabled_web": {
+                "p_id": "",
+                "value": true
+            },
+            "postmatch.connect_tilesize": {
+                "p_id": "",
+                "value": 1
+            },
+            "purchases.save_credit_card_checkbox_on_checkout_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.chat_shield_fab_reporting_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "priority_likes.bottom_sheet_time_period": {
+                "p_id": "",
+                "value": 86400
+            },
+            "iac.iac_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.geo_boundaries_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.rewarded_video_rewind_paywall_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.gamepad_on_card_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "events.push_status_poller_is_active": {
+                "p_id": "",
+                "value": false
+            },
+            "pin_chat.chat_entry_point_animation_interval": {
+                "p_id": "",
+                "value": 86400
+            },
+            "profile.edit_button_in_preview_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "identity.account_deletion_full_page": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_backend.experiment_key_high_quality_image": {
+                "p_id": "",
+                "value": "control"
+            },
+            "ads.rewarded_video_bouncer_bottom_drawer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.selfie_delete_prompt_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.platinum_upsell_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.super_boost_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "bouncer.bouncer_bypass_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "notification_home.is_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.placeholder_rotation_neutral_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "priority_likes.bottom_sheet_like_threshold": {
+                "p_id": "",
+                "value": 10
+            },
+            "profile_detail.new_open_button_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.should_show_alibi_modal": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.selfie_consent_variant": {
+                "p_id": "",
+                "value": "control"
+            },
+            "profile.share_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "iac.out_of_coins_paywall": {
+                "p_id": "",
+                "value": "control"
+            },
+            "media.min_duration_quality_increase": {
+                "p_id": "",
+                "value": 3000
+            },
+            "subscription.renewal_banner_frequency": {
+                "p_id": "",
+                "value": 0
+            },
+            "recs.recs_cache_duration_hours": {
+                "p_id": "",
+                "value": 0
+            },
+            "dynamic_content.is_dynamic_content_liveops_chat_auto_open_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.is_yammer_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "boost.dollar_boost_persistent_label_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.attach_message_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "purchase.google_play_fallback_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.replay_max_results": {
+                "p_id": "",
+                "value": "8fd3752"
+            },
+            "age_verification.learn_more_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.user_blocking_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "session.snapshot_api": {
+                "p_id": "",
+                "value": "draw_view"
+            },
+            "paywall.sticky_terms_of_service_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.attach_message_targeting": {
+                "p_id": "",
+                "value": ""
+            },
+            "recs.tappy_view_tree_lifecycle_owner_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "my_type.intro_modal_rate_limit_value": {
+                "p_id": "",
+                "value": 1
+            },
+            "profile.text_prompts_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.rewrite_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "face_to_face.video_chat_moderation_padding": {
+                "p_id": "",
+                "value": 2
+            },
+            "referrals.give_get_privacy_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.tappy_bio_line_limit": {
+                "p_id": "",
+                "value": 4
+            },
+            "recs.contextual_its_a_match": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.first_message_copy_on_match_screen_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.icebreaker_region": {
+                "p_id": "",
+                "value": ""
+            },
+            "settings.content_tags_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.fast_match_grid_layout_renderer_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.ios_hubble_recs_rate": {
+                "p_id": "",
+                "value": false
+            },
+            "dionysus.enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.profile_badges_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.is_analytics_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.chat_reporting_icon_type": {
+                "p_id": "",
+                "value": "red_flag"
+            },
+            "bouncer.bounce_to_gold": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.gamepad_on_card_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_descriptors_section_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "experiences.is_replay_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_rate_for_all_screens_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.merchandising_tooltip_title": {
+                "p_id": "",
+                "value": 1
+            },
+            "explore.tappy_cloud_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.is_preview_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.highlights_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "paywall.primetime_boost_upsell_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "boost.up_to_copy": {
+                "p_id": "",
+                "value": false
+            },
+            "my_type.intro_modal_url": {
+                "p_id": "",
+                "value": "https://tinderphotos.s3.amazonaws.com/just-for-you/my_type_intro_modal.png"
+            },
+            "gold.subscription_discount_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.highlights_refresh_interval": {
+                "p_id": "",
+                "value": -1
+            },
+            "revenue.paywall_purchase_flow_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "settings.obsidian_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.platinum_upsell_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "events.is_recs_expanded_hubble_instrumentation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "likes_you.min_likes_count_to_enable_filtering": {
+                "p_id": "",
+                "value": 5
+            },
+            "session.ui_engine_theme_id_swipe_surge": {
+                "p_id": "",
+                "value": ""
+            },
+            "session.ui_engine_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.chat_shield_fab_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "products.subtier_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "boost.primetime_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "superlike.upsell_rate_limit_value": {
+                "p_id": "",
+                "value": 1
+            },
+            "pin_chat.nudge_interval": {
+                "p_id": "",
+                "value": 86400
+            },
+            "chat.is_common_interests_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "unlimited_likes.in_app_like_threshold": {
+                "p_id": "",
+                "value": 5
+            },
+            "safety.contact_exchange_messaging_proactive_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_photo_suppression_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.promo_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "profile_detail.is_view_my_card_entry_point_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "discovery.swiper_smart_crop_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "rooms.sync_swipe_card_insertion_position": {
+                "p_id": "",
+                "value": 2
+            },
+            "rooms.sync_swipe_minimum_registration_interval_seconds": {
+                "p_id": "",
+                "value": -1
+            },
+            "safety.noonlight_nway": {
+                "p_id": "",
+                "value": 16
+            },
+            "trust.bio_education_variant": {
+                "p_id": "",
+                "value": "control"
+            },
+            "paywall.is_rewind_carousel_static": {
+                "p_id": "",
+                "value": false
+            },
+            "recs_backend.experiment_key_image_quality_connection_speed_family": {
+                "p_id": "",
+                "value": ""
+            },
+            "google_phase_2_cutover": {
+                "p_id": "",
+                "value": false
+            },
+            "incognito.settings_variant_web": {
+                "p_id": "",
+                "value": 0
+            },
+            "my_type.catalog_id": {
+                "p_id": "",
+                "value": "cl_UdmfO"
+            },
+            "ads.rv_bouncer_reward": {
+                "p_id": "",
+                "value": 0
+            },
+            "purchases.full_price_paywall_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "face_to_face.video_chat_nway": {
+                "p_id": "",
+                "value": 35
+            },
+            "trust.idv_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "superlike.accidental_modal_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "matches.platinum_upsell_v2_banner_sub_status": {
+                "p_id": "",
+                "value": "free,plus"
+            },
+            "age_verification.bio_warning": {
+                "p_id": "",
+                "value": false
+            },
+            "non_iac_store.gold_benefits": {
+                "p_id": "",
+                "value": "likes_you,toppicks,superlike,boost"
+            },
+            "recs_backend.image_quality_connection_speed": {
+                "p_id": "",
+                "value": ""
+            },
+            "postmatch.sparkpack_interactbutton": {
+                "p_id": "",
+                "value": -1
+            },
+            "recs.is_v2_analytics_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "trust.selfie_verification_post_onboarding_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "referrals_home_sharesheet_copy": {
+                "p_id": "",
+                "value": ""
+            },
+            "ads.promo_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile_detail.is_match_list_likes_you_entry_point_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "bouncer.dynamic_bouncer_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "media.photo_loop_camera_upload_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.inmobi_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "safety.home_page_safety_center": {
+                "p_id": "",
+                "value": false
+            },
+            "session.is_paginated_updates_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "ads.secondary_cadence": {
+                "p_id": "",
+                "value": 30
+            },
+            "superlike.gamepad_merchandising_tooltip_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "profile.can_edit_descriptors": {
+                "p_id": "",
+                "value": false
+            },
+            "swipe_note.send": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.profile_media_migration_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "safety.message_undo_prompt_title": {
+                "p_id": "",
+                "value": ""
+            },
+            "platinum.settings_copy_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "matches.platinum_upsell_v2_banner_reappearance_time_interval": {
+                "p_id": "",
+                "value": 172800
+            },
+            "explore.is_available": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.n_media_available": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.selfie_verification_badge_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "app.is_background_safe_api_allowed": {
+                "p_id": "",
+                "value": true
+            },
+            "trust.selfie_v2_biometric_consent_screen_version": {
+                "p_id": "",
+                "value": 1
+            },
+            "profile.photo_refresh_prompt_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "chat.tenor_sticker_icon_set": {
+                "p_id": "",
+                "value": 1
+            },
+            "events.is_tinder_logo_instrumentation_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "profile.smart_bio_recs_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.credit_card_entrypoint_v2_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "purchases.show_payment_options": {
+                "p_id": "",
+                "value": false
+            },
+            "profile_detail.is_recs_bpc_entry_point_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.tappy_cloud_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "account.is_controlla_v2_analytics_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.alibi_deeplink_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "experiences.is_episode_name_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "purchases.controlla_copy": {
+                "p_id": "",
+                "value": "control"
+            },
+            "profile.descriptor_v2_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "events.push_status_poller": {
+                "p_id": "",
+                "value": 1000
+            },
+            "session.contextual_nav_shield_color": {
+                "p_id": "",
+                "value": "grey"
+            },
+            "discovery.discovery_settings_section_v2": {
+                "p_id": "",
+                "value": false
+            },
+            "dynamic_content.is_nps_modal_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "explore.curated_card_stack_opt_out_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "recs.is_common_interests_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.header_counter_suppression_variant": {
+                "p_id": "",
+                "value": 0
+            },
+            "chat.archiving_soon": {
+                "p_id": "",
+                "value": -1
+            },
+            "accessibility.obsidian_pill_ui_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "paywall.is_unselected_prominent": {
+                "p_id": "",
+                "value": false
+            },
+            "trust.message_setting_safetytoolkit_send_read_receipt": {
+                "p_id": "",
+                "value": false
+            },
+            "app.allow_updates_in_background": {
+                "p_id": "",
+                "value": false
+            },
+            "ads.nvs_video_tap_enabled": {
+                "p_id": "",
+                "value": true
+            },
+            "postmatch.connect_enabled": {
+                "p_id": "",
+                "value": false
+            },
+            "postmatch.matches_search_bar_hidden": {
+                "p_id": "",
+                "value": false
+            },
+            "experiences.is_available": {
+                "p_id": "",
+                "value": false
+            },
+            "chat.sparks_quiz_suggestions_enabled": {
+                "p_id": "",
+                "value": false
+            }
+        },
+        "super_like": {
+            "enabled": true,
+            "alc_mode": 2
+        },
+        "profile": {
+            "can_edit_jobs": true,
+            "can_edit_schools": true,
+            "can_edit_email": true,
+            "can_add_photos_from_facebook": false,
+            "can_show_common_connections": false,
+            "school_name_max_length": 128,
+            "job_title_max_length": 128,
+            "company_name_max_length": 128
+        },
+        "select": {
+            "enabled": false,
+            "recs_enabled": false,
+            "invited": false
+        },
+        "feedback": {
+            "rate_app": true
+        },
+        "typing_indicator": {
+            "typing_heartbeat": 2000,
+            "typing_ttl": 5000
+        },
+        "places": {
+            "available": false,
+            "places_ui": "list"
+        },
+        "voter_registration": {
+            "registration_open": true,
+            "status": "not_started",
+            "state": "none",
+            "vote_by_mail_status": "not_started"
+        },
+        "swipe_surge": {
+            "enabled": true,
+            "in_swipe_surge": false
+        },
+        "traveling": {},
+        "crm_inbox": {
+            "enabled": true
+        },
+        "background_location": {
+            "enabled": false
+        },
+        "terms_of_service": {
+            "enabled": false
+        },
+        "selfie_verification": {
+            "status": "verified"
+        },
+        "age_verification": {
+            "status": "not_needed"
+        },
+        "biometric_consent": {
+            "needs_consent": false,
+            "consents": []
+        }
+    }
+}

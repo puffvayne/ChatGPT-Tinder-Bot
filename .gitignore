@@ -2,6 +2,9 @@
 .idea
 venv
 
+# Files
+kite_tutorial*
+
 # Logs
 .DS_Store
 */.DS_Store

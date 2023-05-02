@@ -1,5 +1,5 @@
 import pathlib
-from src.ult import get_whitelist
+from src.utils import get_whitelist
 
 PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 
