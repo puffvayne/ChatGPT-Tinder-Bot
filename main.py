@@ -210,7 +210,7 @@ async def shutdown():
 
 @app.get('/')
 async def root():
-    return {'message': 'Welcome'}
+    return {'message': 'GTBot is Alive!'}
 
 
 @app.get('/matches')
