@@ -1,5 +1,5 @@
 import datetime
-from typing import Dict
+from typing import Dict, Union
 
 
 class PlainPerson:
@@ -62,8 +62,8 @@ class PlainPerson:
         return s
 
     @property
-    def age(self):
-        if self.birth_date is 'Unknown':
+    def age(self) -> Union[int , str]:
+        if self.birth_date == 'Unknown':
             return 'Unknown'
 
         today = datetime.datetime.today()
