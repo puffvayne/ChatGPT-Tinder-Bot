@@ -129,6 +129,15 @@ class TinderAPI:
             msg = f"failed to get remaining likes, Error: {e}"
             print(msg)
 
+    def super_like(self, user_id) -> Dict:
+        try:
+            url = TINDER_URL + f"/like/{user_id}/super"
+            response = requests.post(url, headers=self._headers)
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            msg = f"failed to super like a girl, Error: {e}"
+            print(msg)
+
     def like(self, user_id) -> Dict:
         try:
             url = TINDER_URL + f"/like/{user_id}"
@@ -136,6 +145,15 @@ class TinderAPI:
             return response.json()
         except requests.exceptions.RequestException as e:
             msg = f"failed to like a girl, Error: {e}"
+            print(msg)
+
+    def swipe_left(self, user_id) -> Dict:
+        try:
+            url = TINDER_URL + f"/pass/{user_id}"
+            response = requests.get(url, headers=self._headers)
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            msg = f"failed to pass a girl, Error: {e}"
             print(msg)
 
     def ask_hook_up(self, chatroom):
@@ -168,4 +186,13 @@ class TinderAPI:
             match_id = match_id.match_id
         url = TINDER_URL + f"/user/matches/{match_id}"
         data = requests.delete(url, headers=self._headers).json()
+        return data
+
+    def ping(self, lat: float = 25.08402660022195, lon: float = 121.56159729461773):
+        url = TINDER_URL + '/user/ping'
+        body = {
+            'lat': lat,
+            'lon': lon,
+        }
+        data = requests.post(url, json=body, headers=self._headers).json()
         return data

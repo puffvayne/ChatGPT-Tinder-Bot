@@ -96,8 +96,11 @@ class Chatroom(PlainChatroom):
         if len(self.messages) == 0:
             return False
 
+        if len(self.messages) > 30:
+            return True
+
         for msg in reversed(self.messages):
-            if msg.from_id == self._api.user_id and msg.message == ASK_HOOK_UP_KEY_LINE:
+            if msg.is_from_me and msg.message == ASK_HOOK_UP_KEY_LINE:
                 return True
 
         return False

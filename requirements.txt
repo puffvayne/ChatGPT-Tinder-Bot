@@ -1,8 +1,12 @@
+# core
 openai==0.27.2
 requests==2.28.2
 python-dotenv==0.21.1
 Flask==2.2.3
 APScheduler==3.7.0
+
+# general
+tqdm
 
 # chatgpt
 langchain

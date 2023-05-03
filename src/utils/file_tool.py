@@ -1,7 +1,14 @@
+import datetime
 import pathlib
 import json
 from argparse import Namespace
 from typing import Union, List, Dict
+
+
+def datetime_to_json_handler(obj):
+    if isinstance(obj, datetime.datetime):
+        return obj.isoformat()
+    raise TypeError(f"Type {type(obj)} not serializable")
 
 
 def read_file_lines_to_ls(fp: str) -> List:

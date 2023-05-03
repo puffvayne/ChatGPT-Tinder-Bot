@@ -9,6 +9,20 @@ class RecPerson:
         -1: 'Unknown',
     }
 
+    UNWANTED_SO_LS = [
+        'Asexual',
+        'Gay',
+        'Lesbian',
+    ]
+
+    UNWANTED_KW_LS = [
+        'gay',
+        '同性',
+        'lady boy',
+        'transsexual',
+        '變性',
+    ]
+
     def __init__(self, data: Dict, api):
         """
         parsed data from https://api.gotinder.com/v2/recs/core
@@ -60,6 +74,8 @@ class RecPerson:
         )
         self.schools = list(map(lambda school: school['name'], user_data.get('schools', list())))
 
+        self.images = list(map(lambda photo: photo['url'], user_data.get('photos', list())))
+
         self.distance_mile = data.get('distance_mi', -1)
         self.distance_km = round(self.distance_mile * 1.609344, 3) if self.distance_mile != -1 else -1
 
@@ -68,7 +84,7 @@ class RecPerson:
             birth_date_str = self.birth_date
         else:
             birth_date_str = self.birth_date.strftime('%Y.%m.%d')
-        s = f"RecPerson: {self.id} - {self.name} ({self.city}, {int(round(self.distance_km))} km) ({birth_date_str})"
+        s = f"RecPerson: {self.id} - {self.name} ({self.gender}) ({self.city}, {int(round(self.distance_km))} km) ({birth_date_str})"
 
         return s
 
@@ -88,16 +104,10 @@ class RecPerson:
 
     @property
     def is_valid_so(self) -> bool:
-        unwanted_so_ls = [
-            'Asexual',
-            'Gay',
-            'Lesbian',
-        ]
-
         if len(self.sexual_orientations) == 0:
             return False
 
-        for unwanted_so in unwanted_so_ls:
+        for unwanted_so in self.UNWANTED_SO_LS:
             if unwanted_so in self.sexual_orientations:
                 return False
 
@@ -105,10 +115,28 @@ class RecPerson:
 
     @property
     def is_near(self) -> bool:
-        if self.distance_km < 12:
+        if self.distance_km < 30:
             return True
         else:
             return False
+
+    @property
+    def is_unwanted(self) -> bool:
+        if not self.is_near:
+            return True
+
+        about_str: str = self.name + self.bio
+        about_str = about_str.lower()
+
+        for uw_kw in self.UNWANTED_KW_LS:
+            if uw_kw in about_str:
+                return True
+
+        for un_so in self.UNWANTED_SO_LS:
+            if un_so in self.sexual_orientations:
+                return True
+
+        return False
 
     def info(self):
         return {
@@ -128,5 +156,11 @@ class RecPerson:
             'distance_km': self.distance_km,
         }
 
+    def super_like_her(self) -> Dict:
+        return self._api.super_like(self.id)
+
     def like_her(self) -> Dict:
         return self._api.like(self.id)
+
+    def swipe_her_left(self) -> Dict:
+        return self._api.swipe_left(self.id)
