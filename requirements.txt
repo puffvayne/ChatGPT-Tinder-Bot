@@ -4,6 +4,10 @@ python-dotenv==0.21.1
 Flask==2.2.3
 APScheduler==3.7.0
 
+# chatgpt
+langchain
+pyChatGPT
+
 # >>> local dev >>>
 ## jupyter
 ipykernel

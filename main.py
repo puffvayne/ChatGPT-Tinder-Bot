@@ -16,9 +16,11 @@ from src.dialog import Dialog
 from src.logger import logger
 from src.models import OpenAIModel
 from src.tinder import TinderAPI, RecPerson
+from src.LLM import predict_hook_up_intention
+from src.line import line_notify_message
 from src.utils import get_whitelist
 
-load_dotenv('.env')
+load_dotenv('local.env')
 
 # models = OpenAIModel(api_key=os.getenv('OPENAI_API'), model_engine=os.getenv('OPENAI_MODEL_ENGINE'))
 # chatgpt = ChatGPT(models)
@@ -29,12 +31,13 @@ app = FastAPI()
 scheduler = AsyncIOScheduler()
 cc = OpenCC('s2t')
 templates = Jinja2Templates(directory='templates')
-# TINDER_TOKEN = os.getenv('TINDER_TOKEN')
-TINDER_TOKEN = 'f0a4c549-fcf0-404d-a56f-e5825c4b2dfe'
+TINDER_TOKEN = os.getenv('TINDER_TOKEN')
+CHAT_GPT_TOKEN = open('gpt_token.txt').read()
 
 PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
 MATCH_QUERY_COUNT = 60
+
 
 # @scheduler.scheduled_job("cron", minute='*/6', second=0, id='reply_messages')
 # def reply_messages():
@@ -78,7 +81,7 @@ MATCH_QUERY_COUNT = 60
 #
 #                 logger.info(f'Content: {content}\nReply -> {response}\nGirl:\n{girl.id} # {girl.name}\n')
 
-# @scheduler.scheduled_job('cron', minute='*/6', second=0, id='like_girls')
+@scheduler.scheduled_job('cron', minute='*/3', second=0, id='like_girls')
 def like_girls():
     tinder_api = TinderAPI(TINDER_TOKEN)
     remaining_likes = tinder_api.get_remaining_likes()
@@ -104,28 +107,37 @@ def like_girls():
         print(msg)
 
 
-# @scheduler.scheduled_job('cron', minute='*/15', second=0, id='ask_hook_up')
+@scheduler.scheduled_job('cron', minute='*/6', second=0, id='ask_hook_up')
 def ask_hook_up():
     tinder_api = TinderAPI(TINDER_TOKEN)
     for match in tinder_api.get_matches(limit=MATCH_QUERY_COUNT):
         chatroom = tinder_api.get_chatroom(match)
-        if len(chatroom.messages) == 0:
+        if not chatroom.has_asked_hook_up:
             tinder_api.ask_hook_up(chatroom)
             msg = f"ASKED hook up to {chatroom}\n"
             print(msg)
             time.sleep(random.uniform(6, 9))
         else:
-            msg = f"Chatroom msg is not empty: {chatroom}\n"
+            msg = f"Already asked for hook up: {chatroom}\n"
             print(msg)
 
 
-@scheduler.scheduled_job('cron', minute='*/1', second=0, id='find_girl_replied_hook_up')
+@scheduler.scheduled_job('cron', minute='*/9', second=0, id='find_girl_replied_hook_up')
 def find_girl_reply_hook_up():
     tinder_api = TinderAPI(TINDER_TOKEN)
     for match in tinder_api.get_matches(limit=MATCH_QUERY_COUNT):
         chatroom = tinder_api.get_chatroom(match)
-        if chatroom.has_replied_about_hook_up:
+        if chatroom.has_replied_about_hook_up and not chatroom.has_ensured_girls_reply:
             msg = f"find replied chat room, {chatroom}"
+            print(msg)
+
+            intention = predict_hook_up_intention(chatroom.gen_hook_up_intention_inference_prompt(), CHAT_GPT_TOKEN)
+            print(f"intention = {intention}")
+
+            notify_msg = f"{chatroom.person.name} ({chatroom.person.age}) has {intention} intention, go to ensure her reply!"
+            line_notify_message(notify_msg)
+
+            msg = f"line notify sent"
             print(msg)
 
 

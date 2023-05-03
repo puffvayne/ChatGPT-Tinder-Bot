@@ -19,4 +19,6 @@ for match in tinder_api.get_matches(60):
     # if match.person.name != 'Mary':
     #     continue
     chatroom = tinder_api.get_chatroom(match)
-    print(f"has asked for hk = {chatroom.has_asked_hook_up}, has reply hk = {chatroom.has_replied_about_hook_up}, {chatroom}")
+    # print(f"has asked for hk = {chatroom.has_asked_hook_up}, has reply hk = {chatroom.has_replied_about_hook_up}, {chatroom}")
+    if chatroom.has_replied_about_hook_up:
+        print(chatroom.gen_hook_up_intention_inference_prompt())

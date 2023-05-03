@@ -64,7 +64,7 @@ class TinderAPI:
         return list(map(lambda match: Match(match, self), data['data']['matches']))
 
     def get_msg_data_with_match_id(self, match_id: str) -> Dict:
-        url = TINDER_URL + f"/v2/matches/{match_id}/messages?count=50"
+        url = TINDER_URL + f"/v2/matches/{match_id}/messages?count=90"
         msg_data = requests.get(url, headers=self._headers).json()
         return msg_data
 
@@ -160,4 +160,12 @@ class TinderAPI:
     def get_user_info_json(self, user_id: str):
         url = TINDER_URL + f"/user/{user_id}"
         data = requests.get(url, headers=self._headers).json()
+        return data
+
+    def unmatch(self, match_id: str) -> Dict:
+        from .match import Match
+        if isinstance(match_id, Match):
+            match_id = match_id.match_id
+        url = TINDER_URL + f"/user/matches/{match_id}"
+        data = requests.delete(url, headers=self._headers).json()
         return data

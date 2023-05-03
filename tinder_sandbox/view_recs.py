@@ -13,7 +13,7 @@ import time
 from tqdm import tqdm
 from src.tinder import TinderAPI, ASK_HOOK_UP_MSG_LS
 
-token = 'f0a4c549-fcf0-404d-a56f-e5825c4b2dfe'
+token = ''
 tinder_api = TinderAPI(token)
 print(tinder_api)
 

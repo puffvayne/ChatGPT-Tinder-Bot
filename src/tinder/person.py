@@ -61,6 +61,17 @@ class PlainPerson:
 
         return s
 
+    @property
+    def age(self):
+        if self.birth_date is 'Unknown':
+            return 'Unknown'
+
+        today = datetime.datetime.today()
+        age = today.year - self.birth_date.year - (
+                (today.month, today.day) < (self.birth_date.month, self.birth_date.day))
+
+        return age
+
 
 class Person(PlainPerson):
     GENDER_DICT = {

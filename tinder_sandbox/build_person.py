@@ -11,7 +11,7 @@ print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 from src.tinder import TinderAPI, Person
 from src.utils import to_json, read_json
 
-token = 'f0a4c549-fcf0-404d-a56f-e5825c4b2dfe'
+token = ''
 tinder_api = TinderAPI(token)
 print(tinder_api)
 

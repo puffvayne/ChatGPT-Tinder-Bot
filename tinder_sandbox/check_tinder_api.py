@@ -12,7 +12,7 @@ import json
 from src.utils import to_json
 from src.tinder import TinderAPI, ASK_HOOK_UP_MSG_LS
 
-token = 'f0a4c549-fcf0-404d-a56f-e5825c4b2dfe'
+token = ''
 tinder_api = TinderAPI(token)
 print(tinder_api)
 
@@ -34,9 +34,12 @@ print(plain_chatroom)
 chatroom = tinder_api.get_chatroom(match)
 print(chatroom)
 
-print(ASK_HOOK_UP_MSG_LS)
+hook_up_asking_conversation = chatroom.get_hook_up_asking_conversation()
+print(hook_up_asking_conversation)
 
-dev_q = tinder_api.dev_query_2()
-print(dev_q)
-to_json(dev_q, 'person.json')
+# print(ASK_HOOK_UP_MSG_LS)
+
+# dev_q = tinder_api.dev_query_2()
+# print(dev_q)
+# to_json(dev_q, 'person.json')
 
