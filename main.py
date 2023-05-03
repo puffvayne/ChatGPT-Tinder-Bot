@@ -79,6 +79,7 @@ MATCH_QUERY_COUNT = 60
 #
 #                 logger.info(f'Content: {content}\nReply -> {response}\nGirl:\n{girl.id} # {girl.name}\n')
 
+
 @scheduler.scheduled_job('cron', minute='*/3', second=0, id='like_girls')
 def like_girls():
     tinder_api = TinderAPI(TINDER_TOKEN)
