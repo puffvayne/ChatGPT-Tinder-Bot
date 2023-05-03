@@ -207,7 +207,7 @@ async def shutdown():
 @app.get('/')
 async def root():
     now = datetime.datetime.now(tz=TAIPEI_TZ)
-    return {'message': f"GTBot Server is Alive! access date = {now}"}
+    return {'message': f"GTBot Server is Alive! access date = {now.strftime('%Y-%m-%d %H:%M:%S')}"}
 
 
 @app.get('/matches')
