@@ -4,6 +4,11 @@ venv
 
 # Files
 kite_tutorial*
+*.pyc
+.replit
+.poetry.lock
+.pyproject.toml
+replit.nix
 
 # Logs
 .DS_Store
