@@ -197,8 +197,11 @@ async def startup():
 
 @app.on_event('shutdown')
 async def shutdown():
-    scheduler.remove_job('reply_messages')
-
+    # scheduler.remove_job('reply_messages')
+    scheduler.remove_job('like_girls')
+    scheduler.remove_job('ask_hook_up')
+    scheduler.remove_job('find_girl_reply_about_hook_up')
+    
 
 @app.get('/')
 async def root():
