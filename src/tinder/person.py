@@ -1,5 +1,6 @@
 import datetime
 from typing import Dict, Union
+from . import TAIPEI_TZ
 
 
 class PlainPerson:
@@ -62,11 +63,11 @@ class PlainPerson:
         return s
 
     @property
-    def age(self) -> Union[int , str]:
+    def age(self) -> Union[int, str]:
         if self.birth_date == 'Unknown':
             return 'Unknown'
 
-        today = datetime.datetime.today()
+        today = datetime.datetime.now(tz=TAIPEI_TZ)
         age = today.year - self.birth_date.year - (
                 (today.month, today.day) < (self.birth_date.month, self.birth_date.day))
 

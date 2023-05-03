@@ -1,5 +1,8 @@
 import pathlib
+import pytz
 from importlib.resources import read_text
+
+TAIPEI_TZ = pytz.timezone('Asia/Taipei')
 
 # >>>>>> Global Variables >>>>>>
 TINDER_URL = 'https://api.gotinder.com'
