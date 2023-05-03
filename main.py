@@ -28,13 +28,13 @@ load_dotenv('.env')
 app = FastAPI()
 scheduler = AsyncIOScheduler()
 cc = OpenCC('s2t')
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory='templates')
 # TINDER_TOKEN = os.getenv('TINDER_TOKEN')
-TINDER_TOKEN = ''
+TINDER_TOKEN = 'f0a4c549-fcf0-404d-a56f-e5825c4b2dfe'
 
 PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
-
+MATCH_QUERY_COUNT = 60
 
 # @scheduler.scheduled_job("cron", minute='*/6', second=0, id='reply_messages')
 # def reply_messages():
@@ -78,14 +78,14 @@ WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
 #
 #                 logger.info(f'Content: {content}\nReply -> {response}\nGirl:\n{girl.id} # {girl.name}\n')
 
-@scheduler.scheduled_job("cron", minute='*/6', second=0, id='like_girls')
+# @scheduler.scheduled_job('cron', minute='*/6', second=0, id='like_girls')
 def like_girls():
     tinder_api = TinderAPI(TINDER_TOKEN)
     remaining_likes = tinder_api.get_remaining_likes()
     if remaining_likes:
         rec_user_ls = tinder_api.get_recommendations()
         for rec_user in rec_user_ls:
-            if rec_user.is_girl and remaining_likes > 0:
+            if rec_user.is_girl and rec_user.is_valid_so and rec_user.is_near and remaining_likes > 0:
                 like_res = rec_user.like_her()
                 msg = f"LIKED {rec_user}, dist: {rec_user.distance_km}, " \
                       f"status: {like_res.get('status')}, " \
@@ -96,15 +96,18 @@ def like_girls():
                 time.sleep(random.uniform(3, 6))
                 remaining_likes = tinder_api.get_remaining_likes()
                 # return
+            else:
+                msg = f"skipped {rec_user}"
+                print(msg)
     else:
         msg = 'No likes left :('
         print(msg)
 
 
-@scheduler.scheduled_job("cron", minute='*/15', second=0, id='ask_hook_up')
+# @scheduler.scheduled_job('cron', minute='*/15', second=0, id='ask_hook_up')
 def ask_hook_up():
     tinder_api = TinderAPI(TINDER_TOKEN)
-    for match in tinder_api.get_matches(limit=60):
+    for match in tinder_api.get_matches(limit=MATCH_QUERY_COUNT):
         chatroom = tinder_api.get_chatroom(match)
         if len(chatroom.messages) == 0:
             tinder_api.ask_hook_up(chatroom)
@@ -116,33 +119,44 @@ def ask_hook_up():
             print(msg)
 
 
-@app.on_event("startup")
+@scheduler.scheduled_job('cron', minute='*/1', second=0, id='find_girl_replied_hook_up')
+def find_girl_reply_hook_up():
+    tinder_api = TinderAPI(TINDER_TOKEN)
+    for match in tinder_api.get_matches(limit=MATCH_QUERY_COUNT):
+        chatroom = tinder_api.get_chatroom(match)
+        if chatroom.has_replied_about_hook_up:
+            msg = f"find replied chat room, {chatroom}"
+            print(msg)
+
+
+@app.on_event('startup')
 async def startup():
     scheduler.start()
 
 
-@app.on_event("shutdown")
+@app.on_event('shutdown')
 async def shutdown():
     scheduler.remove_job('reply_messages')
 
 
-@app.get("/")
+@app.get('/')
 async def root():
-    return {"message": "Welcome"}
+    return {'message': 'Welcome'}
 
 
-@app.get("/girls")
-async def view_girls(request: Request):
+@app.get('/matches')
+async def view_matches(request: Request):
     tinder_api = TinderAPI(TINDER_TOKEN)
-    girls = []
-    for match in tinder_api.matches(limit=50):
+    girls = list()
+    for match in tinder_api.get_matches(limit=60):
+        print(match.person.infos())
         girl = match.person
-        girls.append({"id": girl.id, "name": girl.name, "images": girl.images})
+        girls.append({'id': girl.id, 'name': girl.name, 'images': girl.images})
     # return pprint.pformat(json.dumps(girls), indent=4)  # works
     data = {'request': request, 'girls': girls}
-    return templates.TemplateResponse("girls.html", data)
+    return templates.TemplateResponse('girls.html', data)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # uvicorn.run('main:app', host='0.0.0.0', port=8080)
     uvicorn.run('main:app', host='localhost', port=8080)

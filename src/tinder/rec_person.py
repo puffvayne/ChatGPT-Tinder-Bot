@@ -17,12 +17,17 @@ class RecPerson:
         :param api: TinderAPI
         """
         from .tinder_api import TinderAPI
+        assert isinstance(api, TinderAPI)
         self._api: TinderAPI = api
 
         user_data = data['user']
         self.id = user_data['_id']
         self.name = user_data.get('name', 'Unknown')
         self.gender = self.GENDER_DICT[user_data.get('gender', -1)]
+
+        sexual_orientations = user_data.get('sexual_orientations', list())
+        self.sexual_orientations = [so.get('name') for so in sexual_orientations]
+
         self.badges = user_data.get('badges', list())
         self.selfie_verified = False
         for badges in self.badges:
@@ -77,6 +82,30 @@ class RecPerson:
     @property
     def is_verified_girl(self) -> bool:
         if self.is_girl and self.selfie_verified:
+            return True
+        else:
+            return False
+
+    @property
+    def is_valid_so(self) -> bool:
+        unwanted_so_ls = [
+            'Asexual',
+            'Gay',
+            'Lesbian',
+        ]
+
+        if len(self.sexual_orientations) == 0:
+            return False
+
+        for unwanted_so in unwanted_so_ls:
+            if unwanted_so in self.sexual_orientations:
+                return False
+
+        return True
+
+    @property
+    def is_near(self) -> bool:
+        if self.distance_km < 12:
             return True
         else:
             return False

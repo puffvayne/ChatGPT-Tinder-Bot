@@ -63,28 +63,33 @@ class TinderAPI:
         self.chatroom_match_id_ls = list(map(lambda match: match['id'], data['data']['matches']))
         return list(map(lambda match: Match(match, self), data['data']['matches']))
 
-    def _get_msg_data_with_match_id(self, match_id: str) -> Dict:
+    def get_msg_data_with_match_id(self, match_id: str) -> Dict:
         url = TINDER_URL + f"/v2/matches/{match_id}/messages?count=50"
         msg_data = requests.get(url, headers=self._headers).json()
         return msg_data
 
     def get_plain_chatroom(self, match_id):
         from .chatroom import PlainChatroom
-        msg_data = self._get_msg_data_with_match_id(match_id)
+        msg_data = self.get_msg_data_with_match_id(match_id)
         return PlainChatroom(msg_data['data'], match_id, self)
 
     def get_chatroom(self, match):
         from .match import Match
         from .chatroom import Chatroom
         match: Match
-        msg_data = self._get_msg_data_with_match_id(match.match_id)
+        msg_data = self.get_msg_data_with_match_id(match.match_id)
         return Chatroom(msg_data['data'], match, self)
 
     def get_user_info(self, user_id):
         from .person import Person
         url = TINDER_URL + f"/user/{user_id}"
         data = requests.get(url, headers=self._headers).json()
-        return Person(data["results"], self)
+        if data['status'] == 200:
+            return Person(data['results'], self)
+        else:
+            msg = f"server response != 200, when getting user info"
+            print(msg)
+        # return PlainPerson(data["results"], self)
 
     def send_message(self, match_id, from_id, to_id, message):
         body = {
@@ -145,3 +150,14 @@ class TinderAPI:
                 time.sleep(random.uniform(.5, 1))
             else:
                 time.sleep(random.uniform(3, 6))
+
+    def dev_query(self):
+        limit = 60
+        url = TINDER_URL + f"/v2/matches?count={limit}"
+        data = requests.get(url, headers=self._headers).json()
+        return data
+
+    def get_user_info_json(self, user_id: str):
+        url = TINDER_URL + f"/user/{user_id}"
+        data = requests.get(url, headers=self._headers).json()
+        return data

@@ -1,7 +1,7 @@
-from .person import Person
+from .person import PlainPerson
 
 
-class Profile(Person):
+class Profile(PlainPerson):
     def __init__(self, data, api):
         super().__init__(data['user'], api)
         self.email = data['account'].get('email')
