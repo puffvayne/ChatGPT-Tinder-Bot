@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 import pathlib
@@ -210,7 +211,8 @@ async def shutdown():
 
 @app.get('/')
 async def root():
-    return {'message': 'GTBot is Alive!'}
+    now = datetime.datetime.now()
+    return {'message': f"GTBot is Alive! access date = {now}"}
 
 
 @app.get('/matches')
