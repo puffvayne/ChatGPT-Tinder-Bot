@@ -3,6 +3,7 @@ import os
 import pathlib
 import random
 import time
+import pytz
 from tqdm import tqdm
 
 import uvicorn
@@ -15,6 +16,10 @@ from opencc import OpenCC
 from src.line import line_notify_message
 from src.tinder import TinderAPI, RecPerson
 from src.utils import get_whitelist, datetime_to_json_handler
+
+# Set the time zone to Taipei for the script
+os.environ['TZ'] = 'Asia/Taipei'
+time_zone = pytz.timezone('Asia/Taipei')
 
 CHAT_GPT_TOKEN_FILE_PATH = 'local_settings/chat_gpt_token.txt'  # from https://chat.openai.com/api/auth/session
 ENV_FILE_PATH = 'local_settings/local.env'
