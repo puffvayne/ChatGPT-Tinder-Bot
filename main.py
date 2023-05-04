@@ -215,7 +215,7 @@ async def view_matches(request: Request):
     tinder_api = TinderAPI(TINDER_TOKEN)
     girls = list()
     for match in tinder_api.get_matches(limit=60):
-        print(match.person.infos())
+        # print(match.person.infos())
         girl = match.person
         girls.append({'id': girl.id, 'name': girl.name, 'images': girl.images})
 
