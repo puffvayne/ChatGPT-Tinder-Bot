@@ -363,11 +363,11 @@ async def view_profile(request: Request):
 
 
 @app.get('/change_loc')
-async def change_loc(request: Request):
+async def change_loc(lat: float, lon: float):
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
-    lat = request.get('lat')
+    # lat = request.get('lat')
     return lat
 
 
