@@ -62,9 +62,9 @@ SEVER_START_TIME = datetime.datetime.now(tz=TAIPEI_TZ)
 @app.on_event('shutdown')
 async def shutdown():
     # scheduler.remove_job('reply_messages')
-    scheduler.remove_job(JOB_LIKE_GIRLS)
-    scheduler.remove_job(JOB_ASK_HOOK_UP)
-    scheduler.remove_job(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP)
+    scheduler.remove_job(JOB_LIKE_GIRLS.split(' ')[0])
+    scheduler.remove_job(JOB_ASK_HOOK_UP.split(' ')[0])
+    scheduler.remove_job(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP.split(' ')[0])
 
 
 def get_logger(job_id) -> logging.Logger:
