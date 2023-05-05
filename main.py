@@ -54,6 +54,14 @@ LOGGERS = {
 }
 
 
+@app.on_event('shutdown')
+async def shutdown():
+    # scheduler.remove_job('reply_messages')
+    scheduler.remove_job(JOB_LIKE_GIRLS)
+    scheduler.remove_job(JOB_ASK_HOOK_UP)
+    scheduler.remove_job(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP)
+
+
 def get_logger(job_id) -> logging.Logger:
     return LOGGERS[job_id]
 
@@ -254,14 +262,6 @@ async def startup():
     scheduler.start()
 
 
-@app.on_event('shutdown')
-async def shutdown():
-    # scheduler.remove_job('reply_messages')
-    scheduler.remove_job('like_girls')
-    scheduler.remove_job('ask_hook_up')
-    scheduler.remove_job('find_girl_reply_about_hook_up')
-
-
 @app.get('/')
 async def root():
     now = datetime.datetime.now(tz=TAIPEI_TZ)
@@ -323,5 +323,5 @@ async def view_profile(request: Request):
 
 
 if __name__ == '__main__':
-    # uvicorn.run('main:app', host='0.0.0.0', port=8080)
-    uvicorn.run('main:app', host='localhost', port=8080)
+    uvicorn.run('main:app', host='0.0.0.0', port=8080)
+    # uvicorn.run('main:app', host='localhost', port=8080)
