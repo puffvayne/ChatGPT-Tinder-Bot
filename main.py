@@ -53,6 +53,8 @@ LOGGERS = {
     JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP: create_logger(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP),
 }
 
+SYSTEM_LOGGER = create_logger('SYSTEM')
+
 
 @app.on_event('shutdown')
 async def shutdown():
@@ -326,6 +328,24 @@ async def view_profile(request: Request):
     return profile.infos()
 
 
+def set_tz_at_taipei():
+    tz = 'Asia/Taipei'
+    os.environ['TZ'] = tz
+    try:
+        time.tzset()
+        msg = f"set tz at {tz}"
+        SYSTEM_LOGGER.info(msg)
+    except Exception as e:
+        msg = f"failed to set tz at {tz}, Error: {e}"
+        SYSTEM_LOGGER.warning(msg)
+
+
 if __name__ == '__main__':
+    HOST = '0.0.0.0'
+    # HOST = 'localhost'
+
+    set_tz_at_taipei()
+    SYSTEM_LOGGER.info(f"run at HOST: {HOST}")
+
     uvicorn.run('main:app', host='0.0.0.0', port=8080)
     # uvicorn.run('main:app', host='localhost', port=8080)

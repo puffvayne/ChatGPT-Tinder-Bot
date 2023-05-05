@@ -32,7 +32,7 @@ class CustomFormatter(logging.Formatter):
                 for level, color in cls.__LEVEL_COLORS
             }
         return cls.__FORMATS
-    
+
     def converter(self, timestamp):
         dt = datetime.datetime.fromtimestamp(timestamp)
         tp_tz = pytz.timezone('Asia/Taipei')
