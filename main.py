@@ -362,6 +362,15 @@ async def view_profile(request: Request):
     return profile.infos()
 
 
+@app.get('/change_loc')
+async def change_loc(request: Request):
+    tinder_api = get_tinder_api()
+    if tinder_api is None:
+        return 'Failed to login with tinder api.'
+    lat = request.get('lat')
+    return lat
+
+
 def set_tz_at_taipei():
     tz = 'Asia/Taipei'
     os.environ['TZ'] = tz
