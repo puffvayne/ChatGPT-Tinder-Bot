@@ -57,7 +57,7 @@ class CustomFormatter(logging.Formatter):
 
             hour_diff = (target_offset - server_offset).total_seconds() / 3600
             print(f"hour_diff = {hour_diff}")
-            
+
             record.created += hour_diff * 3600
             print(f"final created = {datetime.datetime.fromtimestamp(record.created)}")
 
