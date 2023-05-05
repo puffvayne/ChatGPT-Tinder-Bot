@@ -46,7 +46,8 @@ class CustomFormatter(logging.Formatter):
         if self.timezone:
             # print(f"self.timezone = {self.timezone}")
             tz = pytz.timezone(self.timezone)
-            dt = datetime.datetime.fromtimestamp(record.created, tz)
+            print(f"orig ts = {record.created}, target = {datetime.datetime.fromtimestamp(record.created, tz=tz).timestamp()}")
+            dt = datetime.datetime.fromtimestamp(record.created, tz=tz)
             # dt += datetime.timedelta(hours=8) # !@# debug
             record.created = dt.timestamp()
             print(f"final created = {datetime.datetime.fromtimestamp(record.created)}")
