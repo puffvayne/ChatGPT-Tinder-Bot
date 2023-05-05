@@ -5,6 +5,7 @@ GitHub: https://github.com/jet-c-21
 Create Date: 3/10/23
 """
 import os
+import datetime
 import pytz
 import logging
 import logging.handlers
@@ -31,20 +32,22 @@ class CustomFormatter(logging.Formatter):
                 for level, color in cls.__LEVEL_COLORS
             }
         return cls.__FORMATS
+    
+    def converter(self, timestamp):
+        dt = datetime.datetime.fromtimestamp(timestamp)
+        tp_tz = pytz.timezone('Asia/Taipei')
+        return tp_tz.localize(dt)
 
     def formatTime(self, record, datefmt=None):
-        # Get the current time and convert it to the 'Asia/Taipei' timezone
-        ct = self.converter(record.created)
-        taipei_tz = pytz.timezone('Asia/Taipei')
-        ct = ct.astimezone(taipei_tz)
-
-        # Format the time string
+        dt = self.converter(record.created)
         if datefmt:
-            time_string = ct.strftime(datefmt)
+            s = dt.strftime(datefmt)
         else:
-            time_string = ct.strftime(self.default_time_format)
-
-        return time_string
+            try:
+                s = dt.isoformat(timespec='milliseconds')
+            except TypeError:
+                s = dt.isoformat()
+        return s
 
     def format(self, record):
         formatter = self.get_formats().get(record.levelno)
