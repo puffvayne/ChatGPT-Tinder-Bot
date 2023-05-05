@@ -54,7 +54,9 @@ LOGGERS = {
 }
 
 SYSTEM_LOGGER = create_logger('SYSTEM')
+
 liked_girl_count = 0
+SEVER_START_TIME = datetime.datetime.now(tz=TAIPEI_TZ)
 
 
 @app.on_event('shutdown')
@@ -378,6 +380,5 @@ if __name__ == '__main__':
 
     # set_tz_at_taipei()
     SYSTEM_LOGGER.info(f"run at HOST: {HOST}")
-    SEVER_START_TIME = datetime.datetime.now(tz=TAIPEI_TZ)
     uvicorn.run('main:app', host='0.0.0.0', port=8080)
     # uvicorn.run('main:app', host='localhost', port=8080)
