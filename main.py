@@ -179,6 +179,10 @@ def like_girls():
                     time.sleep(random.uniform(3, 6))
                     remaining_likes = tinder_api.get_remaining_likes()
 
+    else:
+        msg = f"No likes left :("
+        logger.info(msg)
+
     msg = 'finish liking \n'
     logger.info(msg)
 
