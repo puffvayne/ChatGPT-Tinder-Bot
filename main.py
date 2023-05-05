@@ -54,6 +54,7 @@ LOGGERS = {
 }
 
 SYSTEM_LOGGER = create_logger('SYSTEM')
+liked_girl_count = 0
 
 
 @app.on_event('shutdown')
@@ -68,9 +69,18 @@ def get_logger(job_id) -> logging.Logger:
     return LOGGERS[job_id]
 
 
-def get_curr_time_str(tz=TAIPEI_TZ) -> str:
-    now = datetime.datetime.now(tz=tz)
-    return now.strftime('%Y-%m-%d %H:%M:%S')
+def get_curr_time(tz=TAIPEI_TZ) -> datetime.datetime:
+    return datetime.datetime.now(tz=tz)
+
+
+def get_curr_time_str(curr_time: datetime.datetime = None, tz=TAIPEI_TZ) -> str:
+    if curr_time is None:
+        curr_time = get_curr_time(tz)
+    return curr_time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+def get_time_str(date: datetime.datetime):
+    return get_curr_time_str(date)
 
 
 def get_tinder_api():
@@ -131,6 +141,7 @@ def get_tinder_api():
 
 @scheduler.scheduled_job('cron', minute='*/3', second=0, id=JOB_LIKE_GIRLS)
 def like_girls():
+    global liked_girl_count
     logger = get_logger(JOB_LIKE_GIRLS)
     msg = 'prepare to like girls ...'
     logger.info(msg)
@@ -161,6 +172,7 @@ def like_girls():
                               f"match: {like_res.get('match')}, " \
                               f"like: {like_res.get('likes_remaining')}"
                         logger.critical(msg)
+                        liked_girl_count += 1
                         time.sleep(random.uniform(3, 6))
                         remaining_likes = tinder_api.get_remaining_likes()
                     else:
@@ -183,6 +195,7 @@ def like_girls():
                           f"match: {like_res.get('match')}, " \
                           f"like: {like_res.get('likes_remaining')}"
                     logger.critical(msg)
+                    liked_girl_count += 1
                     time.sleep(random.uniform(3, 6))
                     remaining_likes = tinder_api.get_remaining_likes()
 
@@ -275,7 +288,6 @@ async def startup():
 
 @app.get('/')
 async def view_root():
-    now = datetime.datetime.now(tz=TAIPEI_TZ)
     return {'message': f"GTBot Server is Alive! access date = {get_curr_time_str()}"}
 
 
@@ -287,6 +299,11 @@ async def view_remaining_likes():
 
     remaining_likes = tinder_api.get_remaining_likes()
     return f"Remaining Likes: {remaining_likes}, Query Time = {get_curr_time_str()}"
+
+
+@app.get('/liked_girl_count')
+async def view_liked_girl_count():
+    return f"Have liked {liked_girl_count} girls, since {get_time_str(SEVER_START_TIME)}"
 
 
 @app.get('/matches')
@@ -361,6 +378,6 @@ if __name__ == '__main__':
 
     # set_tz_at_taipei()
     SYSTEM_LOGGER.info(f"run at HOST: {HOST}")
-
+    SEVER_START_TIME = datetime.datetime.now(tz=TAIPEI_TZ)
     uvicorn.run('main:app', host='0.0.0.0', port=8080)
     # uvicorn.run('main:app', host='localhost', port=8080)
