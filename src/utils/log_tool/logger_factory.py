@@ -7,6 +7,7 @@ Create Date: 3/10/23
 import os
 import datetime
 import pytz
+from tzlocal import get_localzone
 import logging
 import logging.handlers
 
@@ -44,12 +45,20 @@ class CustomFormatter(logging.Formatter):
             record.exc_text = f'\x1b[31m{text}\x1b[0m'
 
         if self.timezone:
-            # print(f"self.timezone = {self.timezone}")
-            tz = pytz.timezone(self.timezone)
-            print(f"orig ts = {record.created}, target = {datetime.datetime.fromtimestamp(record.created, tz=tz).timestamp()}")
-            dt = datetime.datetime.fromtimestamp(record.created, tz=tz)
-            # dt += datetime.timedelta(hours=8) # !@# debug
-            record.created = dt.timestamp()
+            local_tz = get_localzone()
+            local_now = datetime.datetime.now(tz=local_tz)
+
+            target_tz = pytz.timezone(self.timezone)
+            target_now = datetime.datetime.now(tz=target_tz)
+
+            # Calculate hour difference
+            server_offset = local_now.astimezone(local_tz).utcoffset()
+            target_offset = target_now.astimezone(target_tz).utcoffset()
+
+            hour_diff = (target_offset - server_offset).total_seconds() / 3600
+            print(f"hour_diff = {hour_diff}")
+            
+            record.created += hour_diff * 3600
             print(f"final created = {datetime.datetime.fromtimestamp(record.created)}")
 
         output = formatter.format(record)
