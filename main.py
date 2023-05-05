@@ -253,7 +253,7 @@ def find_girl_reply_about_hook_up():
             msg = f"line notify sent, msg: {msg}"
             logger.critical(msg)
 
-    msg = 'finish finding girl who replied about hook up'
+    msg = 'finish finding girl who replied about hook up \n'
     logger.info(msg)
 
 
