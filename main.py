@@ -42,7 +42,7 @@ MATCH_QUERY_COUNT = 60
 
 # JOBS IDS
 JOB_GET_TINDER_API = 'get_tinder_api 🔌'
-JOB_LIKE_GIRLS = 'like_girls ❤️'
+JOB_LIKE_GIRLS = 'like_girls ❤️ '
 JOB_ASK_HOOK_UP = 'ask_hook_up ❓'
 JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP = 'find_girl_reply_about_hook_up 👀'
 
