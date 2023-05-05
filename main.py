@@ -68,6 +68,11 @@ def get_logger(job_id) -> logging.Logger:
     return LOGGERS[job_id]
 
 
+def get_curr_time_str(tz=TAIPEI_TZ) -> str:
+    now = datetime.datetime.now(tz=tz)
+    return now.strftime('%Y-%m-%d %H:%M:%S')
+
+
 def get_tinder_api():
     try:
         return TinderAPI(TINDER_TOKEN)
@@ -271,7 +276,7 @@ async def startup():
 @app.get('/')
 async def view_root():
     now = datetime.datetime.now(tz=TAIPEI_TZ)
-    return {'message': f"GTBot Server is Alive! access date = {now.strftime('%Y-%m-%d %H:%M:%S')}"}
+    return {'message': f"GTBot Server is Alive! access date = {get_curr_time_str()}"}
 
 
 @app.get('/remain_likes')
@@ -279,8 +284,9 @@ async def view_remaining_likes():
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
+
     remaining_likes = tinder_api.get_remaining_likes()
-    return f"Remaining Likes: {remaining_likes}"
+    return f"Remaining Likes: {remaining_likes}, Query Time = {get_curr_time_str()}"
 
 
 @app.get('/matches')
