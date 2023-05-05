@@ -344,7 +344,7 @@ if __name__ == '__main__':
     HOST = '0.0.0.0'
     # HOST = 'localhost'
 
-    set_tz_at_taipei()
+    # set_tz_at_taipei()
     SYSTEM_LOGGER.info(f"run at HOST: {HOST}")
 
     uvicorn.run('main:app', host='0.0.0.0', port=8080)

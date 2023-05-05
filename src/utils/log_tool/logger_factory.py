@@ -10,6 +10,9 @@ import pytz
 import logging
 import logging.handlers
 
+TZ = pytz.timezone('Asia/Taipei')
+logging.Formatter.converter = TZ
+
 
 class CustomFormatter(logging.Formatter):
     __LEVEL_COLORS = [
@@ -33,21 +36,21 @@ class CustomFormatter(logging.Formatter):
             }
         return cls.__FORMATS
 
-    def converter(self, timestamp):
-        dt = datetime.datetime.fromtimestamp(timestamp)
-        tp_tz = pytz.timezone('Asia/Taipei')
-        return tp_tz.localize(dt)
-
-    def formatTime(self, record, datefmt=None):
-        dt = self.converter(record.created)
-        if datefmt:
-            s = dt.strftime(datefmt)
-        else:
-            try:
-                s = dt.isoformat(timespec='milliseconds')
-            except TypeError:
-                s = dt.isoformat()
-        return s
+    # def converter(self, timestamp):
+    #     dt = datetime.datetime.fromtimestamp(timestamp)
+    #     tp_tz = pytz.timezone('Asia/Taipei')
+    #     return tp_tz.localize(dt)
+    #
+    # def formatTime(self, record, datefmt=None):
+    #     dt = self.converter(record.created)
+    #     if datefmt:
+    #         s = dt.strftime(datefmt)
+    #     else:
+    #         try:
+    #             s = dt.isoformat(timespec='milliseconds')
+    #         except TypeError:
+    #             s = dt.isoformat()
+    #     return s
 
     def format(self, record):
         formatter = self.get_formats().get(record.levelno)
