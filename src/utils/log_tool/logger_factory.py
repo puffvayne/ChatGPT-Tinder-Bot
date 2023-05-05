@@ -49,6 +49,7 @@ class CustomFormatter(logging.Formatter):
             dt = datetime.datetime.fromtimestamp(record.created, tz)
             # dt += datetime.timedelta(hours=8) # !@# debug
             record.created = dt.timestamp()
+            print(f"final created = {datetime.datetime.fromtimestamp(record.created)}")
 
         output = formatter.format(record)
         record.exc_text = None
