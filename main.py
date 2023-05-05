@@ -1,5 +1,6 @@
 import datetime
 import json
+import logging
 import os
 import pathlib
 import random
@@ -16,9 +17,11 @@ from opencc import OpenCC
 from src.line import line_notify_message
 from src.tinder import TinderAPI, RecPerson, TAIPEI_TZ
 from src.utils import get_whitelist, datetime_to_json_handler
+from src.utils.log_tool import create_logger
 
-CHAT_GPT_TOKEN_FILE_PATH = 'local_settings/chat_gpt_token.txt'  # from https://chat.openai.com/api/auth/session
-ENV_FILE_PATH = 'local_settings/local.env'
+PROJECT_DIR = pathlib.Path(__file__).parent
+CHAT_GPT_TOKEN_FILE_PATH = PROJECT_DIR / 'local_settings/chat_gpt_token.txt'  # from https://chat.openai.com/api/auth/session
+ENV_FILE_PATH = PROJECT_DIR / 'local_settings/local.env'
 load_dotenv(ENV_FILE_PATH)
 
 # models = OpenAIModel(api_key=os.getenv('OPENAI_API'), model_engine=os.getenv('OPENAI_MODEL_ENGINE'))
@@ -36,6 +39,36 @@ CHAT_GPT_TOKEN = open(CHAT_GPT_TOKEN_FILE_PATH).read()
 PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
 MATCH_QUERY_COUNT = 60
+
+# JOBS IDS
+JOB_GET_TINDER_API = 'get_tinder_api 🔌'
+JOB_LIKE_GIRLS = 'like_girls ❤️'
+JOB_ASK_HOOK_UP = 'ask_hook_up ❓'
+JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP = 'find_girl_reply_about_hook_up 👀'
+
+LOGGERS = {
+    JOB_GET_TINDER_API: create_logger(JOB_GET_TINDER_API),
+    JOB_LIKE_GIRLS: create_logger(JOB_LIKE_GIRLS),
+    JOB_ASK_HOOK_UP: create_logger(JOB_ASK_HOOK_UP),
+    JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP: create_logger(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP),
+}
+
+
+def get_logger(job_id) -> logging.Logger:
+    return LOGGERS[job_id]
+
+
+def get_tinder_api():
+    try:
+        return TinderAPI(TINDER_TOKEN)
+    except Exception as e:
+        msg = f"Failed to login with TD api, might need to update token"
+        logger = get_logger(JOB_GET_TINDER_API)
+        logger.warning(f"{msg}, Error: {e}")
+
+        line_notify_message(msg)
+        msg = f"line notify sent, msg: {msg}"
+        logger.critical(msg)
 
 
 # @scheduler.scheduled_job("cron", minute='*/6', second=0, id='reply_messages')
@@ -81,20 +114,28 @@ MATCH_QUERY_COUNT = 60
 #                 logger.info(f'Content: {content}\nReply -> {response}\nGirl:\n{girl.id} # {girl.name}\n')
 
 
-@scheduler.scheduled_job('cron', minute='*/3', second=0, id='like_girls')
+@scheduler.scheduled_job('cron', minute='*/3', second=0, id=JOB_LIKE_GIRLS)
 def like_girls():
-    tinder_api = TinderAPI(TINDER_TOKEN)
+    logger = get_logger(JOB_LIKE_GIRLS)
+    msg = 'prepare to like girls ...'
+    logger.info(msg)
+    tinder_api = get_tinder_api()
+    if tinder_api is None:
+        msg = 'failed to like girls'
+        logger.warning(msg)
+        return
+
     remaining_likes = tinder_api.get_remaining_likes()
     if remaining_likes:
         skip_count = 0
         rec_user_ls = tinder_api.get_recommendations()
         msg = f"get {len(rec_user_ls)} recommendation user"
-        print(msg)
+        logger.info(msg)
         for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
             if rec_user.is_unwanted:
                 swipe_left_res = rec_user.swipe_her_left()
                 msg = f"({rec_idx}/{len(rec_user_ls)}) SWIPED LEFT {rec_user}, status: {swipe_left_res.get('status')}"
-                print(msg)
+                logger.info(msg)
                 time.sleep(random.uniform(3, 6))
             else:
                 if remaining_likes > 0:
@@ -104,20 +145,20 @@ def like_girls():
                               f"status: {like_res.get('status')}, " \
                               f"match: {like_res.get('match')}, " \
                               f"like: {like_res.get('likes_remaining')}"
-                        print(msg)
+                        logger.critical(msg)
                         time.sleep(random.uniform(3, 6))
                         remaining_likes = tinder_api.get_remaining_likes()
                     else:
                         msg = f"({rec_idx}/{len(rec_user_ls)}) skip {rec_user}"
-                        print(msg)
+                        logger.info(msg)
                         skip_count += 1
                 else:
                     msg = f"({rec_idx}/{len(rec_user_ls)}) No likes left :("
-                    print(msg)
+                    logger.critical(msg)
 
         if skip_count == len(rec_user_ls):
             msg = f'skip all at first round, prepare to do second round'
-            print(msg)
+            logger.info(msg)
             remaining_likes = tinder_api.get_remaining_likes()
             for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
                 if not rec_user.is_unwanted and remaining_likes > 0:
@@ -126,27 +167,38 @@ def like_girls():
                           f"status: {like_res.get('status')}, " \
                           f"match: {like_res.get('match')}, " \
                           f"like: {like_res.get('likes_remaining')}"
-                    print(msg)
+                    logger.critical(msg)
                     time.sleep(random.uniform(3, 6))
                     remaining_likes = tinder_api.get_remaining_likes()
 
     msg = 'finish liking \n'
-    print(msg)
+    logger.info(msg)
 
 
-@scheduler.scheduled_job('cron', minute='*/6', second=0, id='ask_hook_up')
+@scheduler.scheduled_job('cron', minute='*/6', second=0, id=JOB_ASK_HOOK_UP)
 def ask_hook_up():
-    tinder_api = TinderAPI(TINDER_TOKEN)
+    logger = get_logger(JOB_ASK_HOOK_UP)
+    msg = 'prepare to ask hook up ...'
+    logger.info(msg)
+    tinder_api = get_tinder_api()
+    if tinder_api is None:
+        msg = 'failed to ask hook up'
+        logger.warning(msg)
+        return
+
     for match in tinder_api.get_matches(limit=MATCH_QUERY_COUNT):
         chatroom = tinder_api.get_chatroom(match)
         if not chatroom.has_asked_hook_up:
             tinder_api.ask_hook_up(chatroom)
             msg = f"ASKED hook up to {chatroom}\n"
-            print(msg)
+            logger.critical(msg)
             time.sleep(random.uniform(6, 9))
         else:
             msg = f"Already asked for hook up: {chatroom}\n"
-            print(msg)
+            logger.info(msg)
+
+    msg = f"finish asking hook up \n"
+    logger.info(msg)
 
 
 # @scheduler.scheduled_job('cron', minute='*/9', second=0, id='find_girl_with_high_hook_up_intention')
@@ -171,24 +223,30 @@ def ask_hook_up():
 
 @scheduler.scheduled_job('cron', minute='*/9', second=0, id='find_girl_reply_about_hook_up')
 def find_girl_reply_about_hook_up():
-    msg = f"start to find_girl_reply_about_hook_up()"
-    print(msg)
+    logger = get_logger(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP)
+    msg = 'prepare to find girl who replied about hook up ...'
+    logger.info(msg)
+    tinder_api = get_tinder_api()
+    if tinder_api is None:
+        msg = 'failed to find girl who replied about hook up'
+        logger.warning(msg)
+        return
 
-    tinder_api = TinderAPI(TINDER_TOKEN)
     for match in tinder_api.get_matches(limit=MATCH_QUERY_COUNT):
         chatroom = tinder_api.get_chatroom(match)
         if chatroom.has_replied_about_hook_up and not chatroom.has_ensured_girls_reply:
             msg = f"find girl replied about hook up, {chatroom}"
-            print(msg)
+            logger.critical(msg)
 
             notify_msg = f"{chatroom.person.name} ({chatroom.person.age}) has replied, go to ensure her reply!"
             line_notify_message(notify_msg)
 
-            msg = f"line notify sent"
-            print(msg)
+            line_notify_message(msg)
+            msg = f"line notify sent, msg: {msg}"
+            logger.critical(msg)
 
-    msg = f"find_girl_reply_about_hook_up() done"
-    print(msg)
+    msg = 'finish finding girl who replied about hook up'
+    logger.info(msg)
 
 
 @app.on_event('startup')
@@ -212,7 +270,10 @@ async def root():
 
 @app.get('/matches')
 async def view_matches(request: Request):
-    tinder_api = TinderAPI(TINDER_TOKEN)
+    tinder_api = get_tinder_api()
+    if tinder_api is None:
+        return 'Failed to login with tinder api.'
+
     girls = list()
     for match in tinder_api.get_matches(limit=60):
         # print(match.person.infos())
@@ -221,13 +282,16 @@ async def view_matches(request: Request):
 
     # return pprint.pformat(json.dumps(girls), indent=4)  # works
 
-    data = {'request': request, 'girls': girls}
+    data = {'request': request, 'girls': girls, 'girl_count': len(girls)}
     return templates.TemplateResponse('girls.html', data)
 
 
 @app.get('/recs')
 async def view_recs(request: Request):
-    tinder_api = TinderAPI(TINDER_TOKEN)
+    tinder_api = get_tinder_api()
+    if tinder_api is None:
+        return 'Failed to login with tinder api.'
+
     girls = list()
     for girl in tinder_api.get_recommendations():
         girl: RecPerson
@@ -242,20 +306,22 @@ async def view_recs(request: Request):
         )
 
     # return pprint.pformat(json.dumps(girls), indent=4)  # works
-    msg = f"recs girls count = {len(girls)}"
-    print(msg)
+    # msg = f"recs girls count = {len(girls)}"
+    # print(msg)
 
-    data = {'request': request, 'girls': girls}
+    data = {'request': request, 'girls': girls, 'girl_count': len(girls)}
     return templates.TemplateResponse('recs.html', data)
 
 
 @app.get('/profile')
 async def view_profile(request: Request):
-    tinder_api = TinderAPI(TINDER_TOKEN)
+    tinder_api = get_tinder_api()
+    if tinder_api is None:
+        return 'Failed to login with tinder api.'
     profile = tinder_api.profile()
     return profile.infos()
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app', host='0.0.0.0', port=8080)
-    # uvicorn.run('main:app', host='localhost', port=8080)
+    # uvicorn.run('main:app', host='0.0.0.0', port=8080)
+    uvicorn.run('main:app', host='localhost', port=8080)

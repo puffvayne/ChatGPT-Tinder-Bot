@@ -1,3 +1,9 @@
+# coding: utf-8
+"""
+Author: Jet C.
+GitHub: https://github.com/jet-c-21
+Create Date: 3/10/23
+"""
 import os
 import logging
 import logging.handlers
@@ -18,7 +24,7 @@ class CustomFormatter(logging.Formatter):
         if cls.__FORMATS is None:
             cls.__FORMATS = {
                 level: logging.Formatter(
-                    f'\x1b[30;1m%(asctime)s\x1b[0m {color}%(levelname)-8s\x1b[0m \x1b[35m%(name)s\x1b[0m -> %(message)s',
+                    f'%(asctime)s {color}%(levelname)-3s\x1b[0m \x1b[35m%(name)s\x1b[0m 📝 %(message)s',
                     '%Y-%m-%d %H:%M:%S'
                 )
                 for level, color in cls.__LEVEL_COLORS
@@ -38,22 +44,10 @@ class CustomFormatter(logging.Formatter):
         return output
 
 
-class LoggerFactory:
-    @staticmethod
-    def create_logger(formatter, handlers):
-        logger = logging.getLogger('chatgpt_logger')
-        logger.setLevel(logging.INFO)
-        for handler in handlers:
-            handler.setLevel(logging.DEBUG)
-            handler.setFormatter(formatter)
-            logger.addHandler(handler)
-        return logger
-
-
 class FileHandler(logging.FileHandler):
     def __init__(self, log_file):
         os.makedirs(os.path.dirname(log_file), exist_ok=True)
-        super().__init__(log_file)
+        super().__init__(log_file, encoding='utf-8')
 
 
 class ConsoleHandler(logging.StreamHandler):
@@ -61,6 +55,21 @@ class ConsoleHandler(logging.StreamHandler):
 
 
 formatter = CustomFormatter()
-file_handler = FileHandler('./logs')
+# file_handler = FileHandler('./logs')
 console_handler = ConsoleHandler()
-logger = LoggerFactory.create_logger(formatter, [file_handler, console_handler])
+
+
+def create_logger(name, log_lv=logging.DEBUG):
+    logger = logging.getLogger(name)
+    logger.setLevel(log_lv)
+
+    # file_handler.setLevel(log_lv)
+    # file_formatter = logging.Formatter('⏰ %(asctime)s <%(name)s> [%(levelname)s] 📝 %(message)s')
+    # file_handler.setFormatter(file_formatter)
+    # logger.addHandler(file_handler)
+
+    console_handler.setLevel(log_lv)
+    console_handler.setFormatter(formatter)
+    logger.addHandler(console_handler)
+
+    return logger

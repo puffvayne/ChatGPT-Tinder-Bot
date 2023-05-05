@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Girls Gallery</title>
+    <title>Matches</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -11,6 +11,20 @@
     <style>
         body {
             background-color: #2b2b2b;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            color: black;
+            width: 33%;
+            height: 100px; /* Adjust the height as desired */
+            margin: 0 auto 20px auto;
+            border-radius: 5px;
+            padding: 10px;
+
         }
 
         .carousel-item {
@@ -65,6 +79,10 @@
     </style>
 </head>
 <body>
+<div class="header">
+    <h3>Match Girls Count : {{ girl_count }}</h3>
+</div>
+
 <div class="container">
     <div class="gallery-container">
         {% for girl in girls %}
