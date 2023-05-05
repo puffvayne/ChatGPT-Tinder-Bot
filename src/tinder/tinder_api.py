@@ -188,7 +188,7 @@ class TinderAPI:
         data = requests.delete(url, headers=self._headers).json()
         return data
 
-    def ping(self, lat: float = 25.033658870888523, lon: float = 121.53002749061814):
+    def ping(self, lat: float = 25.033658870888523, lon: float = 121.53002749061814) -> Dict:
         url = TINDER_URL + '/user/ping'
         body = {
             'lat': lat,

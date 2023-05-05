@@ -367,8 +367,8 @@ async def change_loc(lat: float, lon: float):
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
-    # lat = request.get('lat')
-    return lat
+
+    return {'lat': lat, 'lon': lon, 'result': tinder_api.ping(lat, lon)}
 
 
 def set_tz_at_taipei():
