@@ -47,6 +47,7 @@ class CustomFormatter(logging.Formatter):
             # print(f"self.timezone = {self.timezone}")
             tz = pytz.timezone(self.timezone)
             dt = datetime.datetime.fromtimestamp(record.created, tz)
+            print(f"dt = {dt}")
             record.asctime = dt.strftime('%Y-%m-%d %H:%M:%S')
 
         output = formatter.format(record)
