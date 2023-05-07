@@ -4,6 +4,7 @@ import logging
 import os
 import pathlib
 import random
+from typing import Union, Dict
 import time
 from tqdm import tqdm
 
@@ -56,6 +57,7 @@ LOGGERS = {
 SYSTEM_LOGGER = create_logger('SYSTEM')
 
 liked_girl_count = 0
+swiped_left_girl_count = 0
 SEVER_START_TIME = datetime.datetime.now(tz=TAIPEI_TZ)
 
 
@@ -143,7 +145,7 @@ def get_tinder_api():
 
 @scheduler.scheduled_job('cron', minute='*/3', second=0, id=JOB_LIKE_GIRLS)
 def like_girls():
-    global liked_girl_count
+    global liked_girl_count, swiped_left_girl_count
     logger = get_logger(JOB_LIKE_GIRLS)
     msg = 'prepare to like girls ...'
     logger.info(msg)
@@ -163,7 +165,8 @@ def like_girls():
             if rec_user.is_unwanted:
                 swipe_left_res = rec_user.swipe_her_left()
                 msg = f"({rec_idx}/{len(rec_user_ls)}) SWIPED LEFT {rec_user}, status: {swipe_left_res.get('status')}"
-                logger.info(msg)
+                logger.critical(msg)
+                swiped_left_girl_count += 1
                 time.sleep(random.uniform(3, 6))
             else:
                 if remaining_likes > 0:
@@ -289,12 +292,12 @@ async def startup():
 
 
 @app.get('/')
-async def view_root():
+async def view_root() -> Dict:
     return {'message': f"GTBot Server is Alive! access date = {get_curr_time_str()}"}
 
 
 @app.get('/remain_likes')
-async def view_remaining_likes():
+async def view_remaining_likes() -> str:
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
@@ -304,12 +307,12 @@ async def view_remaining_likes():
 
 
 @app.get('/liked_girl_count')
-async def view_liked_girl_count():
-    return f"Have liked {liked_girl_count} girls, since {get_time_str(SEVER_START_TIME)}"
+async def view_liked_girl_count() -> str:
+    return f"Have liked {liked_girl_count} girls, swiped left {swiped_left_girl_count} girls, since {get_time_str(SEVER_START_TIME)}"
 
 
 @app.get('/matches')
-async def view_matches(request: Request):
+async def view_matches(request: Request) -> templates.TemplateResponse:
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
@@ -327,7 +330,7 @@ async def view_matches(request: Request):
 
 
 @app.get('/recs')
-async def view_recs(request: Request):
+async def view_recs(request: Request) -> templates.TemplateResponse:
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
@@ -354,7 +357,7 @@ async def view_recs(request: Request):
 
 
 @app.get('/profile')
-async def view_profile(request: Request):
+async def view_profile(request: Request) -> Union[Dict, str]:
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
@@ -363,7 +366,7 @@ async def view_profile(request: Request):
 
 
 @app.get('/change_loc')
-async def change_loc(lat: float, lon: float):
+async def change_loc(lat: float, lon: float) -> Dict:
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
