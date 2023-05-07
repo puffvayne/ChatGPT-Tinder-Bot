@@ -357,7 +357,7 @@ async def view_recs(request: Request):
 
 
 @app.get('/profile')
-async def view_profile(request: Request) -> Union[Dict, str]:
+async def view_profile() -> Union[Dict, str]:
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
