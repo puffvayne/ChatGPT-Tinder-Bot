@@ -312,7 +312,7 @@ async def view_liked_girl_count() -> str:
 
 
 @app.get('/matches')
-async def view_matches(request: Request) -> templates.TemplateResponse:
+async def view_matches(request: Request):
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
@@ -330,7 +330,7 @@ async def view_matches(request: Request) -> templates.TemplateResponse:
 
 
 @app.get('/recs')
-async def view_recs(request: Request) -> templates.TemplateResponse:
+async def view_recs(request: Request):
     tinder_api = get_tinder_api()
     if tinder_api is None:
         return 'Failed to login with tinder api.'
