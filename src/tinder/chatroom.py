@@ -28,6 +28,10 @@ class PlainChatroom:
         s = f"PlainChatroom: {self.match_id}"
         return s
 
+    def print_messages(self):
+        for msg in self.messages:
+            print(msg)
+
 
 class Chatroom(PlainChatroom):
     def __init__(self, data: Dict, match, api):
@@ -96,7 +100,7 @@ class Chatroom(PlainChatroom):
         if len(self.messages) == 0:
             return False
 
-        if len(self.messages) > 30:
+        if self.has_talked_awhile:
             return True
 
         for msg in reversed(self.messages):
@@ -106,9 +110,19 @@ class Chatroom(PlainChatroom):
         return False
 
     @property
+    def has_talked_awhile(self) -> bool:
+        if len(self.messages) > 30:
+            return True
+        else:
+            return False
+
+    @property
     def has_replied_about_hook_up(self) -> bool:
         if not self.has_asked_hook_up:
             return False
+
+        if self.has_talked_awhile:
+            return True
 
         key_line_msg_idx = None
         msg_old_to_new = list(reversed(self.messages))
@@ -129,6 +143,9 @@ class Chatroom(PlainChatroom):
     def has_ensured_girls_reply(self) -> bool:
         if not self.has_replied_about_hook_up:
             return False
+
+        if self.has_talked_awhile:
+            return True
 
         key_line_msg_idx = None
         msg_old_to_new = list(reversed(self.messages))

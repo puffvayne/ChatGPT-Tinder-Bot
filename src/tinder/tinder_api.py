@@ -63,8 +63,8 @@ class TinderAPI:
         self.chatroom_match_id_ls = list(map(lambda match: match['id'], data['data']['matches']))
         return list(map(lambda match: Match(match, self), data['data']['matches']))
 
-    def get_msg_data_with_match_id(self, match_id: str) -> Dict:
-        url = TINDER_URL + f"/v2/matches/{match_id}/messages?count=90"
+    def get_msg_data_with_match_id(self, match_id: str, msg_query_count=90) -> Dict:
+        url = TINDER_URL + f"/v2/matches/{match_id}/messages?count={msg_query_count}"
         msg_data = requests.get(url, headers=self._headers).json()
         return msg_data
 
