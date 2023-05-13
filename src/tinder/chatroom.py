@@ -100,7 +100,7 @@ class Chatroom(PlainChatroom):
         if len(self.messages) == 0:
             return False
 
-        if self.has_talked_awhile:
+        if self.has_chatted_awhile:
             return True
 
         for msg in reversed(self.messages):
@@ -110,7 +110,7 @@ class Chatroom(PlainChatroom):
         return False
 
     @property
-    def has_talked_awhile(self) -> bool:
+    def has_chatted_awhile(self) -> bool:
         if len(self.messages) > 30:
             return True
         else:
@@ -121,7 +121,7 @@ class Chatroom(PlainChatroom):
         if not self.has_asked_hook_up:
             return False
 
-        if self.has_talked_awhile:
+        if self.has_chatted_awhile:
             return True
 
         key_line_msg_idx = None
@@ -144,7 +144,7 @@ class Chatroom(PlainChatroom):
         if not self.has_replied_about_hook_up:
             return False
 
-        if self.has_talked_awhile:
+        if self.has_chatted_awhile:
             return True
 
         key_line_msg_idx = None
