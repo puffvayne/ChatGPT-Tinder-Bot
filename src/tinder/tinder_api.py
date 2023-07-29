@@ -112,6 +112,15 @@ class TinderAPI:
             msg = f"failed to get meta, Error: {e}"
             print(msg)
 
+    def get_meta_v1_response(self):
+        try:
+            url = TINDER_URL + '/meta'
+            response = requests.get(url, headers=self._headers)
+            return response
+        except requests.exceptions.RequestException as e:
+            msg = f"failed to get meta v1, Error: {e}"
+            print(msg)
+
     def meta_v1(self):
         try:
             url = TINDER_URL + '/meta'
@@ -121,7 +130,7 @@ class TinderAPI:
             msg = f"failed to get meta v1, Error: {e}"
             print(msg)
 
-    def get_remaining_likes(self):
+    def get_remaining_likes(self) -> Union[int, None]:
         try:
             meta_v1 = self.meta_v1()
             return meta_v1.get('rating', dict()).get('likes_remaining', 0)

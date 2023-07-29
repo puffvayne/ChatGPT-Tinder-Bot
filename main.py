@@ -91,7 +91,8 @@ def get_tinder_api():
     try:
         return TinderAPI(TINDER_TOKEN)
     except Exception as e:
-        msg = f"Failed to login with TD api, might need to update token"
+        msg = f"Failed to login with TD api, might need to update token\n" \
+              f"CURR TOKEN: {TINDER_TOKEN}"
         logger = get_logger(JOB_GET_TINDER_API)
         logger.warning(f"{msg}, Error: {e}")
 
