@@ -11,8 +11,8 @@ print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 import json
 import time
 from tqdm import tqdm
-from src.tinder import TinderAPI, ASK_HOOK_UP_MSG_LS
-from src.utils.file_tool import to_json
+from tinder_bot.tinder import TinderAPI, ASK_HOOK_UP_MSG_LS
+from tinder_bot.utils.file_tool import to_json
 
 token = ''
 tinder_api = TinderAPI(token)

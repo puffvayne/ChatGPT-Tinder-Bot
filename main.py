@@ -15,10 +15,10 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from opencc import OpenCC
 
-from src.line import line_notify_message
-from src.tinder import TinderAPI, RecPerson, TAIPEI_TZ
-from src.utils import get_whitelist, datetime_to_json_handler
-from src.utils.log_tool import create_logger
+from tinder_bot.line import line_notify_message
+from tinder_bot.tinder import TinderAPI, RecPerson, TAIPEI_TZ
+from tinder_bot.utils import get_whitelist, datetime_to_json_handler
+from tinder_bot.utils.log_tool import create_logger
 
 PROJECT_DIR = pathlib.Path(__file__).parent
 CHAT_GPT_TOKEN_FILE_PATH = PROJECT_DIR / 'local_settings/chat_gpt_token.txt'  # from https://chat.openai.com/api/auth/session

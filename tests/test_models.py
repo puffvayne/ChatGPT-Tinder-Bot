@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from src.models import OpenAIModel
+from tinder_bot.models import OpenAIModel
 
 
 class TestOpenAIModel(unittest.TestCase):

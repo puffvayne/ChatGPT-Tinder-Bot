@@ -9,8 +9,8 @@ PROJECT_DIR = CURR_DIR.parent
 sys.path.append(str(PROJECT_DIR))
 print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 
-from src.tinder import TinderAPI, Person
-from src.utils import to_json, read_json
+from tinder_bot.tinder import TinderAPI, Person
+from tinder_bot.utils import to_json, read_json
 
 token = ''
 tinder_api = TinderAPI(token)

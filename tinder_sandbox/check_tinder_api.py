@@ -10,8 +10,8 @@ print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 
 import json
 import os
-from src.utils import to_json
-from src.tinder import TinderAPI, ASK_HOOK_UP_MSG_LS
+from tinder_bot.utils import to_json
+from tinder_bot.tinder import TinderAPI, ASK_HOOK_UP_MSG_LS
 from dotenv import load_dotenv
 
 load_dotenv(PROJECT_DIR / 'local_settings/local.env')

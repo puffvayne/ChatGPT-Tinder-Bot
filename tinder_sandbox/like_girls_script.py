@@ -10,7 +10,7 @@ print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 
 import time
 import random
-from src.tinder import TinderAPI
+from tinder_bot.tinder import TinderAPI
 from pprint import pp
 
 token = ''

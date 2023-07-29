@@ -8,8 +8,8 @@ PROJECT_DIR = CURR_DIR.parent
 sys.path.append(str(PROJECT_DIR))
 print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 
-from src.LLM import predict_hook_up_intention
-from src.tinder import TinderAPI
+from tinder_bot.LLM import predict_hook_up_intention
+from tinder_bot.tinder import TinderAPI
 
 gpt_token = open('cookies.txt', 'r').read()
 # llm = ChatGPT(token=token)  # for start new chat

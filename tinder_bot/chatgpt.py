@@ -1,4 +1,4 @@
-from src.models import ModelInterface
+from tinder_bot.models import ModelInterface
 
 
 class ChatGPT:

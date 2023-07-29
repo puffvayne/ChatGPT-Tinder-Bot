@@ -8,8 +8,8 @@ PROJECT_DIR = CURR_DIR.parent
 sys.path.append(str(PROJECT_DIR))
 print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 
-from src.models import OpenAIModel
-from src.chatgpt import ChatGPT, DALLE
+from tinder_bot.models import OpenAIModel
+from tinder_bot.chatgpt import ChatGPT, DALLE
 import openai
 from pprint import pp
 
