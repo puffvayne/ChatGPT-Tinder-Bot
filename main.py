@@ -96,7 +96,7 @@ def get_tinder_api():
         return TinderAPI(TINDER_TOKEN)
     except Exception as e:
         msg = f"Failed to login with TD api, might need to update token\n" \
-              f"CURR TOKEN: {TINDER_TOKEN}"
+              f"CURR TOKEN: {TINDER_TOKEN[:6]}******"
         logger = get_logger(JOB_GET_TINDER_API)
         logger.warning(f"{msg}, Error: {e}")
 
@@ -405,7 +405,8 @@ if __name__ == '__main__':
     # HOST = 'localhost'
 
     tinder_api = get_tinder_api()
-    msg = f"running tinder account: {tinder_api}"
+    msg = f"running tinder account: {tinder_api}\n" \
+          f"CURR TOKEN: {TINDER_TOKEN[:6]}******"
     rich_printer(msg)
 
     # set_tz_at_taipei()
