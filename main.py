@@ -194,6 +194,7 @@ def like_girls():
 
                     if remaining_likes == 0:
                         like_cdh.update_allowed_dt()
+                        break
 
                 else:
                     msg = f"({rec_idx}/{len(rec_user_ls)}) skip {rec_user}"
@@ -219,6 +220,7 @@ def like_girls():
                 time.sleep(random.uniform(3, 6))
                 if remaining_likes == 0:
                     like_cdh.update_allowed_dt()
+                    break
 
     msg = 'finish liking \n'
     logger.info(msg)
