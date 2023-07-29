@@ -4,12 +4,18 @@ Author: Jet C.
 GitHub: https://github.com/jet-c-21
 Create Date: 3/10/23
 """
+import pathlib
+from typing import Union
 import os
 import datetime
 import pytz
 from tzlocal import get_localzone
 import logging
 import logging.handlers
+
+from .. import var as VAR
+from .rich_logger import RichLogger
+from ..console_tool.rich_printer.rich_printer import RichPrinter
 
 
 class CustomFormatter(logging.Formatter):
@@ -40,6 +46,7 @@ class CustomFormatter(logging.Formatter):
         formatter = self.get_formats().get(record.levelno)
         if formatter is None:
             formatter = self.get_formats()[logging.DEBUG]
+
         if record.exc_info:
             text = formatter.formatException(record.exc_info)
             record.exc_text = f'\x1b[31m{text}\x1b[0m'
@@ -80,18 +87,56 @@ formatter = CustomFormatter()
 # file_handler = FileHandler('./logs')
 console_handler = ConsoleHandler()
 
+LOGGER_DICT = dict()
 
-def create_logger(name, log_lv=logging.DEBUG):
+
+def create_logger(name,
+                  log_lv=logging.DEBUG,
+                  log_path: Union[pathlib.Path, str, None] = None) -> RichLogger:
+    if name in LOGGER_DICT:
+        return LOGGER_DICT[name]
+
+    rich_printer = RichPrinter()
+
     logger = logging.getLogger(name)
     logger.setLevel(log_lv)
 
-    # file_handler.setLevel(log_lv)
-    # file_formatter = logging.Formatter('⏰ %(asctime)s <%(name)s> [%(levelname)s] 📝 %(message)s')
-    # file_handler.setFormatter(file_formatter)
-    # logger.addHandler(file_handler)
+    msg = f"new logger name: {logger.name}, LEVEL: {logging.getLevelName(logger.level)} ({logger.level})"
+    rich_printer(msg)
 
     console_handler.setLevel(log_lv)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
-    return logger
+    if log_path is not None:
+        if log_path == 'default':
+            file_handler = FileHandler(VAR.LOG.DFLT_LOG_PATH)
+
+        else:
+            file_handler = FileHandler(log_path)
+
+        msg = f"<{name}>'s log file = {file_handler.baseFilename}"
+        rich_printer(msg)
+
+        file_handler.setLevel(log_lv)
+        file_formatter = logging.Formatter('⏰ %(asctime)s <%(name)s> [%(levelname)s] 📝 %(message)s')
+        file_handler.setFormatter(file_formatter)
+        logger.addHandler(file_handler)
+
+        log_path = pathlib.Path(file_handler.baseFilename)
+        log_path.parent.chmod(0o777)
+
+        new_logger = RichLogger(
+            logger,
+            log_path,
+        )
+
+    else:
+        new_logger = RichLogger(
+            logger,
+            None,
+        )
+
+    LOGGER_DICT[new_logger.name] = new_logger
+
+    return new_logger

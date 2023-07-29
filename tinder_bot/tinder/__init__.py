@@ -27,3 +27,4 @@ from .profile import Profile
 from .match import Match
 from .chatroom import PlainChatroom, Chatroom
 from .tinder_api import TinderAPI
+from .like_cooldown_handler import LikeCooldownHandler

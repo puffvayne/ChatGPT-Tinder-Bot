@@ -15,10 +15,11 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from opencc import OpenCC
 
-from tinder_bot.line import line_notify_message
-from tinder_bot.tinder import TinderAPI, RecPerson, TAIPEI_TZ
+from tinder_bot.utils.notify_tool.line import send_message_by_line_notify
+from tinder_bot.tinder import TinderAPI, RecPerson, TAIPEI_TZ, LikeCooldownHandler
 from tinder_bot.utils import get_whitelist, datetime_to_json_handler
 from tinder_bot.utils.log_tool import create_logger
+from tinder_bot.utils.console_tool import RichPrinter
 
 PROJECT_DIR = pathlib.Path(__file__).parent
 CHAT_GPT_TOKEN_FILE_PATH = PROJECT_DIR / 'local_settings/chat_gpt_token.txt'  # from https://chat.openai.com/api/auth/session
@@ -55,6 +56,9 @@ LOGGERS = {
 }
 
 SYSTEM_LOGGER = create_logger('SYSTEM')
+
+like_cdh = LikeCooldownHandler()
+rich_printer = RichPrinter()
 
 liked_girl_count = 0
 swiped_left_girl_count = 0
@@ -96,7 +100,7 @@ def get_tinder_api():
         logger = get_logger(JOB_GET_TINDER_API)
         logger.warning(f"{msg}, Error: {e}")
 
-        line_notify_message(msg)
+        send_message_by_line_notify(msg)
         msg = f"line notify sent, msg: {msg}"
         logger.critical(msg)
 
@@ -150,70 +154,77 @@ def like_girls():
     logger = get_logger(JOB_LIKE_GIRLS)
     msg = 'prepare to like girls ...'
     logger.info(msg)
+
+    if not like_cdh.can_like_now():
+        msg = f"No likes left :("
+        logger.info(msg)
+        return
+
     tinder_api = get_tinder_api()
     if tinder_api is None:
         msg = 'failed to like girls'
         logger.warning(msg)
         return
 
-    remaining_likes = tinder_api.get_remaining_likes()
-    if remaining_likes:
-        skip_count = 0
-        rec_user_ls = tinder_api.get_recommendations()
-        msg = f"get {len(rec_user_ls)} recommendation user"
-        logger.info(msg)
-        for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
-            if rec_user.is_unwanted:
-                swipe_left_res = rec_user.swipe_her_left()
-                msg = f"({rec_idx}/{len(rec_user_ls)}) SWIPED LEFT {rec_user}, status: {swipe_left_res.get('status')}"
-                logger.critical(msg)
-                swiped_left_girl_count += 1
-                time.sleep(random.uniform(3, 6))
-            else:
-                if remaining_likes > 0:
-                    if rec_user.is_girl or rec_user.is_valid_so:
-                        like_res = rec_user.like_her()
-                        msg = f"({rec_idx}/{len(rec_user_ls)}) LIKED {rec_user}, dist: {rec_user.distance_km} km, " \
-                              f"status: {like_res.get('status')}, " \
-                              f"match: {like_res.get('match')}, " \
-                              f"like: {like_res.get('likes_remaining')}"
-                        logger.critical(msg)
-                        liked_girl_count += 1
-                        time.sleep(random.uniform(3, 6))
-                        remaining_likes = tinder_api.get_remaining_likes()
-                    else:
-                        msg = f"({rec_idx}/{len(rec_user_ls)}) skip {rec_user}"
-                        logger.info(msg)
-                        skip_count += 1
-                else:
-                    msg = f"({rec_idx}/{len(rec_user_ls)}) No likes left :("
-                    logger.critical(msg)
-
-        if skip_count == len(rec_user_ls):
-            msg = f'skip all at first round, prepare to do second round'
-            logger.info(msg)
-            remaining_likes = tinder_api.get_remaining_likes()
-            for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
-                if not rec_user.is_unwanted and remaining_likes > 0:
+    skip_count = 0
+    rec_user_ls = tinder_api.get_recommendations()
+    msg = f"get {len(rec_user_ls)} recommendation user"
+    logger.info(msg)
+    for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
+        if rec_user.is_unwanted:
+            swipe_left_res = rec_user.swipe_her_left()
+            msg = f"({rec_idx}/{len(rec_user_ls)}) SWIPED LEFT {rec_user}, status: {swipe_left_res.get('status')}"
+            logger.critical(msg)
+            swiped_left_girl_count += 1
+            time.sleep(random.uniform(3, 6))
+        else:
+            if like_cdh.can_like_now():
+                if rec_user.is_girl or rec_user.is_valid_so:
                     like_res = rec_user.like_her()
+
+                    remaining_likes = like_res.get('likes_remaining')
+
                     msg = f"({rec_idx}/{len(rec_user_ls)}) LIKED {rec_user}, dist: {rec_user.distance_km} km, " \
                           f"status: {like_res.get('status')}, " \
                           f"match: {like_res.get('match')}, " \
-                          f"like: {like_res.get('likes_remaining')}"
+                          f"rm like: {remaining_likes}"
                     logger.critical(msg)
                     liked_girl_count += 1
                     time.sleep(random.uniform(3, 6))
-                    remaining_likes = tinder_api.get_remaining_likes()
 
-    else:
-        msg = f"No likes left :("
+                    if remaining_likes == 0:
+                        like_cdh.update_allowed_dt()
+
+                else:
+                    msg = f"({rec_idx}/{len(rec_user_ls)}) skip {rec_user}"
+                    logger.info(msg)
+                    skip_count += 1
+            else:
+                msg = f"({rec_idx}/{len(rec_user_ls)}) No likes left :("
+                logger.critical(msg)
+
+    if skip_count == len(rec_user_ls):
+        msg = f'skip all at first round, prepare to do second round'
         logger.info(msg)
+        for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
+            if not rec_user.is_unwanted and like_cdh.can_like_now():
+                like_res = rec_user.like_her()
+                remaining_likes = like_res.get('likes_remaining')
+                msg = f"({rec_idx}/{len(rec_user_ls)}) LIKED {rec_user}, dist: {rec_user.distance_km} km, " \
+                      f"status: {like_res.get('status')}, " \
+                      f"match: {like_res.get('match')}, " \
+                      f"rm like: {remaining_likes}"
+                logger.critical(msg)
+                liked_girl_count += 1
+                time.sleep(random.uniform(3, 6))
+                if remaining_likes == 0:
+                    like_cdh.update_allowed_dt()
 
     msg = 'finish liking \n'
     logger.info(msg)
 
 
-@scheduler.scheduled_job('cron', minute='*/6', second=0, id=JOB_ASK_HOOK_UP)
+@scheduler.scheduled_job('cron', minute='*/7', second=0, id=JOB_ASK_HOOK_UP)
 def ask_hook_up():
     logger = get_logger(JOB_ASK_HOOK_UP)
     msg = 'prepare to ask hook up ...'
@@ -259,7 +270,7 @@ def ask_hook_up():
 #             print(msg)
 
 
-@scheduler.scheduled_job('cron', minute='*/9', second=0, id='find_girl_reply_about_hook_up')
+@scheduler.scheduled_job('cron', minute='*/11', second=0, id='find_girl_reply_about_hook_up')
 def find_girl_reply_about_hook_up():
     logger = get_logger(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP)
     msg = 'prepare to find girl who replied about hook up ...'
@@ -277,9 +288,9 @@ def find_girl_reply_about_hook_up():
             logger.critical(msg)
 
             notify_msg = f"{chatroom.person.name} ({chatroom.person.age}) has replied, go to ensure her reply!"
-            line_notify_message(notify_msg)
+            send_message_by_line_notify(notify_msg)
 
-            line_notify_message(msg)
+            send_message_by_line_notify(msg)
             msg = f"line notify sent, msg: {msg}"
             logger.critical(msg)
 
@@ -370,7 +381,7 @@ async def view_profile() -> Union[Dict, str]:
 async def change_loc(lat: float, lon: float) -> Dict:
     tinder_api = get_tinder_api()
     if tinder_api is None:
-        return 'Failed to login with tinder api.'
+        return {'message': 'Failed to login with tinder api.'}
 
     return {'lat': lat, 'lon': lon, 'result': tinder_api.ping(lat, lon)}
 
@@ -390,6 +401,10 @@ def set_tz_at_taipei():
 if __name__ == '__main__':
     HOST = '0.0.0.0'
     # HOST = 'localhost'
+
+    tinder_api = get_tinder_api()
+    msg = f"running tinder account: {tinder_api}"
+    rich_printer(msg)
 
     # set_tz_at_taipei()
     SYSTEM_LOGGER.info(f"run at HOST: {HOST}")

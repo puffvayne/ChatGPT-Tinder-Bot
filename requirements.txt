@@ -12,6 +12,9 @@ tqdm
 langchain
 pyChatGPT
 
+# color console
+rich
+
 # >>> local dev >>>
 ## jupyter
 ipykernel

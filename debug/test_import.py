@@ -9,5 +9,14 @@ sys.path.append(str(PROJECT_DIR))
 print(f"[INFO] - append directory to path: {PROJECT_DIR}")
 
 from tinder_bot.utils import var as VAR
+from tinder_bot.utils.log_tool import get_cls_instance_logger
 
-print(VAR.LOG.x)
+
+class Axx:
+    def __init__(self):
+        self.logger = get_cls_instance_logger(self, log_path='default')
+
+        self.logger.info('init')
+
+
+a = Axx()

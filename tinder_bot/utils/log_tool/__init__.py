@@ -9,3 +9,4 @@ import pathlib
 __curr_file_path = pathlib
 
 from .logger_factory import create_logger
+from .tool import get_cls_instance_logger, get_cls_instance_logger_name

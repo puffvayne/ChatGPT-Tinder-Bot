@@ -1,13 +1,30 @@
+import logging
+import pathlib
 import time
 
 import requests
 import random
 from typing import Union, List, Dict
 from . import TINDER_URL, ASK_HOOK_UP_MSG_LS
+from ..utils.log_tool.tool import get_cls_instance_logger
 
 
 class TinderAPI:
-    def __init__(self, token):
+    CLS_EMOJI = '💑'
+
+    def __init__(self,
+                 token: str,
+                 log_lv=logging.DEBUG,
+                 log_path: Union[pathlib.Path, str, None] = None):
+        self.logger = get_cls_instance_logger(
+            self,
+            log_lv=log_lv,
+            log_path=log_path
+        )
+
+        self.log_lv = self.logger.log_lv
+        self.log_path = self.logger.log_path
+
         self._token = token
         self._headers = {
             'X-Auth-Token': self._token
@@ -16,6 +33,9 @@ class TinderAPI:
         profile = self.profile()
         self.user_name = profile.name
         self.user_id = profile.id
+
+        msg = f"initialized: {self}"
+        self.logger.info(msg)
 
     def __repr__(self) -> str:
         s = f"TinderAPI : {self.user_id} - {self.user_name}"
@@ -122,6 +142,9 @@ class TinderAPI:
             print(msg)
 
     def meta_v1(self):
+        msg = f"this method is broken!"
+        self.logger.warning(msg)
+
         try:
             url = TINDER_URL + '/meta'
             response = requests.get(url, headers=self._headers)
@@ -131,6 +154,9 @@ class TinderAPI:
             print(msg)
 
     def get_remaining_likes(self) -> Union[int, None]:
+        msg = f"this method is broken!"
+        self.logger.warning(msg)
+
         try:
             meta_v1 = self.meta_v1()
             return meta_v1.get('rating', dict()).get('likes_remaining', 0)
