@@ -156,7 +156,7 @@ def like_girls():
     logger.info(msg)
 
     if not like_cdh.can_like_now():
-        msg = f"No likes left :("
+        msg = f"no likes left 🙃"
         logger.info(msg)
         return
 
@@ -194,6 +194,8 @@ def like_girls():
 
                     if remaining_likes == 0:
                         like_cdh.update_allowed_dt()
+                        msg = f"oh no! no likes left 🙃 ..."
+                        logger.critical(msg)
                         break
 
                 else:
@@ -220,6 +222,8 @@ def like_girls():
                 time.sleep(random.uniform(3, 6))
                 if remaining_likes == 0:
                     like_cdh.update_allowed_dt()
+                    msg = f"oh no! no likes left 🙃 ..."
+                    logger.critical(msg)
                     break
 
     msg = 'finish liking \n'
@@ -405,9 +409,9 @@ if __name__ == '__main__':
     # HOST = 'localhost'
 
     tinder_api = get_tinder_api()
-    msg = f"running tinder account: {tinder_api}\n" \
-          f"CURR TOKEN: {TINDER_TOKEN[:6]}******"
-    rich_printer(msg)
+    __msg = f"running tinder account: {tinder_api}\n" \
+            f"CURR TOKEN: {TINDER_TOKEN[:6]}******"
+    rich_printer(__msg)
 
     # set_tz_at_taipei()
     SYSTEM_LOGGER.info(f"run at HOST: {HOST}")
