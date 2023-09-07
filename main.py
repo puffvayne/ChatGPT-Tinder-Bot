@@ -190,7 +190,7 @@ def like_girls():
                     msg = f"({rec_idx}/{len(rec_user_ls)}) LIKED {rec_user}, dist: {rec_user.distance_km} km, " \
                           f"status: {like_res.get('status')}, " \
                           f"match: {like_res.get('match')}, " \
-                          f"rm like: {remaining_likes}"
+                          f"left like: {remaining_likes}"
                     logger.critical(msg)
                     liked_girl_count += 1
                     time.sleep(random.uniform(3, 6))
@@ -222,7 +222,7 @@ def like_girls():
                 msg = f"({rec_idx}/{len(rec_user_ls)}) LIKED {rec_user}, dist: {rec_user.distance_km} km, " \
                       f"status: {like_res.get('status')}, " \
                       f"match: {like_res.get('match')}, " \
-                      f"rm like: {remaining_likes}"
+                      f"left like: {remaining_likes}"
                 logger.critical(msg)
                 liked_girl_count += 1
                 time.sleep(random.uniform(3, 6))
