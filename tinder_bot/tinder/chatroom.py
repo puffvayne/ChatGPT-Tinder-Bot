@@ -1,7 +1,7 @@
 from typing import List, Union
 from .message import Message
 from typing import Dict
-from . import ASK_HOOK_UP_KEY_LINE
+from . import ASK_HOOK_UP_KEY_LINE_LS
 
 
 class PlainChatroom:
@@ -104,7 +104,7 @@ class Chatroom(PlainChatroom):
             return True
 
         for msg in reversed(self.messages):
-            if msg.is_from_me and msg.message == ASK_HOOK_UP_KEY_LINE:
+            if msg.is_ask_hook_up_key_line:
                 return True
 
         return False

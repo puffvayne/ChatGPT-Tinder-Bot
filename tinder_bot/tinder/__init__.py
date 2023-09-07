@@ -16,7 +16,9 @@ def __get_hook_up_msg_ls():
 
 
 ASK_HOOK_UP_MSG_LS = __get_hook_up_msg_ls()
-ASK_HOOK_UP_KEY_LINE = '先跟妳說一下 我是來約的喔'
+ASK_HOOK_UP_KEY_LINE_LS = [
+    '先跟妳說一下 我是來約的喔'
+]
 
 # <<<<<< Global Variables <<<<<<
 
