@@ -23,6 +23,14 @@ class RecPerson:
         '變性',
     ]
 
+    # acquaintance
+    ACQ_NAME_LS = [
+        'ching',
+        'jing',
+        'meijing',
+        'mei jing',
+    ]
+
     def __init__(self, data: Dict, api):
         """
         parsed data from https://api.gotinder.com/v2/recs/core
@@ -36,7 +44,7 @@ class RecPerson:
 
         user_data = data['user']
         self.id = user_data['_id']
-        self.name = user_data.get('name', 'Unknown')
+        self.name: str = user_data.get('name', 'Unknown')
         self.gender = self.GENDER_DICT[user_data.get('gender', -1)]
 
         sexual_orientations = user_data.get('sexual_orientations', list())
@@ -137,6 +145,13 @@ class RecPerson:
                 return True
 
         return False
+
+    @property
+    def is_acq(self):
+        if self.name.lower() in self.ACQ_NAME_LS:
+            return True
+        else:
+            return False
 
     def info(self):
         return {

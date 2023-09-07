@@ -171,6 +171,9 @@ def like_girls():
     msg = f"get {len(rec_user_ls)} recommendation user"
     logger.info(msg)
     for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
+        if rec_user.is_acq:
+            continue
+
         if rec_user.is_unwanted:
             swipe_left_res = rec_user.swipe_her_left()
             msg = f"({rec_idx}/{len(rec_user_ls)}) SWIPED LEFT {rec_user}, status: {swipe_left_res.get('status')}"
@@ -210,6 +213,9 @@ def like_girls():
         msg = f'skip all at first round, prepare to do second round'
         logger.info(msg)
         for rec_idx, rec_user in enumerate(rec_user_ls, start=1):
+            if rec_user.is_acq:
+                continue
+
             if not rec_user.is_unwanted and like_cdh.can_like_now():
                 like_res = rec_user.like_her()
                 remaining_likes = like_res.get('likes_remaining')
