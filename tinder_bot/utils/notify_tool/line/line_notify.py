@@ -7,7 +7,7 @@ Create Date: 5/17/23
 import requests
 
 LINE_NOTIFY_TOKEN = 'B55Vq8lk9RTaooaZWbaAGzGsRlVj8FOyDQmM51kg3rQ'
-DO_NOTIFICATION = True
+DO_NOTIFICATION = False
 
 
 def send_message_by_line_notify(msg, token=LINE_NOTIFY_TOKEN):

@@ -293,7 +293,7 @@ def ask_hook_up():
 @scheduler.scheduled_job('cron', minute='*/11', second=0, id='find_girl_reply_about_hook_up')
 def find_girl_reply_about_hook_up():
     if not DO_JOB:
-        return 
+        return
 
     logger = get_logger(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP)
     msg = 'prepare to find girl who replied about hook up ...'
