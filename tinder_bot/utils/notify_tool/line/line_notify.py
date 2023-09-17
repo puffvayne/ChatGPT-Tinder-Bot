@@ -7,9 +7,13 @@ Create Date: 5/17/23
 import requests
 
 LINE_NOTIFY_TOKEN = 'B55Vq8lk9RTaooaZWbaAGzGsRlVj8FOyDQmM51kg3rQ'
+DO_NOTIFICATION = True
 
 
 def send_message_by_line_notify(msg, token=LINE_NOTIFY_TOKEN):
+    if not DO_NOTIFICATION:
+        return
+
     headers = {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/x-www-form-urlencoded"

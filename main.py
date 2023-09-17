@@ -42,6 +42,8 @@ PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
 MATCH_QUERY_COUNT = 60
 
+DO_JOB = False
+
 # JOBS IDS
 JOB_GET_TINDER_API = 'get_tinder_api 🔌'
 JOB_LIKE_GIRLS = 'like_girls ❤️ '
@@ -150,6 +152,9 @@ def get_tinder_api():
 
 @scheduler.scheduled_job('cron', minute='*/3', second=0, id=JOB_LIKE_GIRLS)
 def like_girls():
+    if not DO_JOB:
+        return
+
     global liked_girl_count, swiped_left_girl_count
     logger = get_logger(JOB_LIKE_GIRLS)
     msg = 'prepare to like girls ...'
@@ -238,6 +243,9 @@ def like_girls():
 
 @scheduler.scheduled_job('cron', minute='*/7', second=0, id=JOB_ASK_HOOK_UP)
 def ask_hook_up():
+    if not DO_JOB:
+        return
+
     logger = get_logger(JOB_ASK_HOOK_UP)
     msg = 'prepare to ask hook up ...'
     logger.info(msg)
@@ -284,6 +292,9 @@ def ask_hook_up():
 
 @scheduler.scheduled_job('cron', minute='*/11', second=0, id='find_girl_reply_about_hook_up')
 def find_girl_reply_about_hook_up():
+    if not DO_JOB:
+        return 
+
     logger = get_logger(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP)
     msg = 'prepare to find girl who replied about hook up ...'
     logger.info(msg)
