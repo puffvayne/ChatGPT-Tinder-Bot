@@ -1,5 +1,5 @@
 import datetime
-from . import ASK_HOOK_UP_KEY_LINE_LS
+from . import ASK_HOOK_UP_KEY_LINE_LS, ASK_HOOK_UP_KEYWORD_LS
 
 
 class Message:
@@ -42,5 +42,14 @@ class Message:
     def is_ask_hook_up_key_line(self) -> bool:
         if self.is_from_me and self.message in ASK_HOOK_UP_KEY_LINE_LS:
             return True
+        elif self.is_from_me and self.has_hook_up_keywords:
+            return True
         else:
             return False
+
+    @property
+    def has_hook_up_keywords(self) -> bool:
+        for hook_up_keyword in ASK_HOOK_UP_KEYWORD_LS:
+            if hook_up_keyword in self.message:
+                return True
+        return False

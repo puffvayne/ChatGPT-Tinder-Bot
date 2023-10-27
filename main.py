@@ -42,7 +42,7 @@ PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
 MATCH_QUERY_COUNT = 60
 
-DO_JOB = False
+DO_JOB = True
 
 # JOBS IDS
 JOB_GET_TINDER_API = 'get_tinder_api 🔌'

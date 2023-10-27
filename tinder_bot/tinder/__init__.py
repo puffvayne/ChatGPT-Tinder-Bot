@@ -17,7 +17,10 @@ def __get_hook_up_msg_ls():
 
 ASK_HOOK_UP_MSG_LS = __get_hook_up_msg_ls()
 ASK_HOOK_UP_KEY_LINE_LS = [
-    '先跟妳說一下 我是來約的喔'
+    '先跟妳說一下 我是來約的喔',
+]
+ASK_HOOK_UP_KEYWORD_LS = [
+    '妳的上升星座是什麼呢? 我猜是天秤',
 ]
 
 # <<<<<< Global Variables <<<<<<
