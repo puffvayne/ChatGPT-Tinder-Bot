@@ -173,7 +173,7 @@ class TinderAPI:
             msg = f"failed to super like a girl, Error: {e}"
             print(msg)
 
-    def like(self, user_id) -> Dict:
+    def like(self, user_id) -> Union[Dict, None]:
         try:
             url = TINDER_URL + f"/like/{user_id}"
             response = requests.get(url, headers=self._headers)

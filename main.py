@@ -189,6 +189,10 @@ def like_girls():
             if like_cdh.can_like_now():
                 if rec_user.is_girl or rec_user.is_valid_so:
                     like_res = rec_user.like_her()
+                    if like_res is None:
+                        msg = f"failed to like girls, like_res = {like_res}"
+                        logger.error(msg)
+                        continue
 
                     remaining_likes = like_res.get('likes_remaining')
 
