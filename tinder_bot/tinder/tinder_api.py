@@ -47,7 +47,7 @@ class TinderAPI:
         data = requests.get(url, headers=self._headers).json()
         return Profile(data["data"], self)
 
-    def get_recommendations(self):
+    def get_recommendations(self) -> List:
         from .rec_person import RecPerson
         try:
             url = TINDER_URL + '/v2/recs/core'

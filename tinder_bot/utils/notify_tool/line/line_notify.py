@@ -7,7 +7,7 @@ Create Date: 5/17/23
 import requests
 
 LINE_NOTIFY_TOKEN = 'B55Vq8lk9RTaooaZWbaAGzGsRlVj8FOyDQmM51kg3rQ'
-DO_NOTIFICATION = False
+DO_NOTIFICATION = True
 
 
 def send_message_by_line_notify(msg, token=LINE_NOTIFY_TOKEN):
@@ -26,3 +26,13 @@ def send_message_by_line_notify(msg, token=LINE_NOTIFY_TOKEN):
     except Exception as e:
         msg = f"Failed to send LINE Notifycation, Error: {e}"
         print(msg)
+
+
+def turn_off_line_notify():
+    global DO_NOTIFICATION
+    DO_NOTIFICATION = False
+
+
+def turn_on_line_notify():
+    global DO_NOTIFICATION
+    DO_NOTIFICATION = True

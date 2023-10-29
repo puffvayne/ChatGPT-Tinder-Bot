@@ -15,11 +15,22 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from opencc import OpenCC
 
-from tinder_bot.utils.notify_tool.line import send_message_by_line_notify
-from tinder_bot.tinder import TinderAPI, RecPerson, TAIPEI_TZ, LikeCooldownHandler
+from tinder_bot.utils.notify_tool.line import (
+    send_message_by_line_notify,
+    turn_on_line_notify,
+    turn_off_line_notify,
+)
+from tinder_bot.tinder import (
+    TinderAPI,
+    RecPerson,
+    TAIPEI_TZ,
+    LikeCooldownHandler,
+    LoginHistory,
+)
 from tinder_bot.utils import get_whitelist, datetime_to_json_handler
 from tinder_bot.utils.log_tool import create_logger
 from tinder_bot.utils.console_tool import RichPrinter
+import config
 
 PROJECT_DIR = pathlib.Path(__file__).parent
 CHAT_GPT_TOKEN_FILE_PATH = PROJECT_DIR / 'local_settings/chat_gpt_token.txt'  # from https://chat.openai.com/api/auth/session
@@ -42,7 +53,11 @@ PROJECT_DIR = pathlib.Path(__file__).absolute().parent
 WHITELIST_PATH = PROJECT_DIR / 'whitelist.txt'
 MATCH_QUERY_COUNT = 60
 
-DO_JOB = True
+DO_JOB = config.DO_JOB
+if config.DO_LINE_NOTIFY:
+    turn_on_line_notify()
+else:
+    turn_off_line_notify()
 
 # JOBS IDS
 JOB_GET_TINDER_API = 'get_tinder_api 🔌'
@@ -61,6 +76,7 @@ SYSTEM_LOGGER = create_logger('SYSTEM')
 
 like_cdh = LikeCooldownHandler()
 rich_printer = RichPrinter()
+login_history = LoginHistory()
 
 liked_girl_count = 0
 swiped_left_girl_count = 0
@@ -79,13 +95,13 @@ def get_logger(job_id) -> logging.Logger:
     return LOGGERS[job_id]
 
 
-def get_curr_time(tz=TAIPEI_TZ) -> datetime.datetime:
+def get_curr_dt(tz=TAIPEI_TZ) -> datetime.datetime:
     return datetime.datetime.now(tz=tz)
 
 
 def get_curr_time_str(curr_time: datetime.datetime = None, tz=TAIPEI_TZ) -> str:
     if curr_time is None:
-        curr_time = get_curr_time(tz)
+        curr_time = get_curr_dt(tz)
     return curr_time.strftime('%Y-%m-%d %H:%M:%S')
 
 
@@ -93,7 +109,13 @@ def get_time_str(date: datetime.datetime):
     return get_curr_time_str(date)
 
 
-def get_tinder_api():
+def get_tinder_api(login_history: LoginHistory = None, failed_login_notify_intv=30):
+    """
+
+    :param login_history: LoginHistory
+    :param failed_login_notify_intv: default per 30 minutes
+    :return:
+    """
     try:
         return TinderAPI(TINDER_TOKEN)
     except Exception as e:
@@ -101,10 +123,20 @@ def get_tinder_api():
               f"CURR TOKEN: {TINDER_TOKEN[:6]}******"
         logger = get_logger(JOB_GET_TINDER_API)
         logger.warning(f"{msg}, Error: {e}")
+        if login_history is None:
+            send_message_by_line_notify(msg)
+            msg = f"line notify sent, msg: {msg}"
+            logger.critical(msg)
+        else:
+            curr_dt = get_curr_dt()
+            if login_history.last_fln_dt is None:
+                login_history.update_fln_data(curr_dt, msg)
+                send_message_by_line_notify(msg)
+                return
 
-        send_message_by_line_notify(msg)
-        msg = f"line notify sent, msg: {msg}"
-        logger.critical(msg)
+            if login_history.last_fln_is_over_x_minutes(curr_dt, minutes=failed_login_notify_intv)
+                login_history.update_fln_data(curr_dt, msg)
+                send_message_by_line_notify(msg)
 
 
 # @scheduler.scheduled_job("cron", minute='*/6', second=0, id='reply_messages')
@@ -165,7 +197,7 @@ def like_girls():
         logger.info(msg)
         return
 
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         msg = 'failed to like girls'
         logger.warning(msg)
@@ -253,7 +285,7 @@ def ask_hook_up():
     logger = get_logger(JOB_ASK_HOOK_UP)
     msg = 'prepare to ask hook up ...'
     logger.info(msg)
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         msg = 'failed to ask hook up'
         logger.warning(msg)
@@ -302,7 +334,7 @@ def find_girl_reply_about_hook_up():
     logger = get_logger(JOB_FIND_GIRL_REPLY_ABOUT_HOOK_UP)
     msg = 'prepare to find girl who replied about hook up ...'
     logger.info(msg)
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         msg = 'failed to find girl who replied about hook up'
         logger.warning(msg)
@@ -337,7 +369,7 @@ async def view_root() -> Dict:
 
 @app.get('/remain_likes')
 async def view_remaining_likes() -> str:
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         return 'Failed to login with tinder api.'
 
@@ -352,7 +384,7 @@ async def view_liked_girl_count() -> str:
 
 @app.get('/matches')
 async def view_matches(request: Request):
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         return 'Failed to login with tinder api.'
 
@@ -370,7 +402,7 @@ async def view_matches(request: Request):
 
 @app.get('/recs')
 async def view_recs(request: Request):
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         return 'Failed to login with tinder api.'
 
@@ -397,7 +429,7 @@ async def view_recs(request: Request):
 
 @app.get('/profile')
 async def view_profile() -> Union[Dict, str]:
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         return 'Failed to login with tinder api.'
     profile = tinder_api.profile()
@@ -406,7 +438,7 @@ async def view_profile() -> Union[Dict, str]:
 
 @app.get('/change_loc')
 async def change_loc(lat: float, lon: float) -> Dict:
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     if tinder_api is None:
         return {'message': 'Failed to login with tinder api.'}
 
@@ -429,7 +461,7 @@ if __name__ == '__main__':
     HOST = '0.0.0.0'
     # HOST = 'localhost'
 
-    tinder_api = get_tinder_api()
+    tinder_api = get_tinder_api(login_history)
     __msg = f"running tinder account: {tinder_api}\n" \
             f"CURR TOKEN: {TINDER_TOKEN[:6]}******"
     rich_printer(__msg)
