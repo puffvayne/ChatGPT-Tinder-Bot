@@ -134,7 +134,7 @@ def get_tinder_api(login_history: LoginHistory = None, failed_login_notify_intv=
                 send_message_by_line_notify(msg)
                 return
 
-            if login_history.last_fln_is_over_x_minutes(curr_dt, minutes=failed_login_notify_intv)
+            if login_history.last_fln_is_over_x_minutes(curr_dt, minutes=failed_login_notify_intv):
                 login_history.update_fln_data(curr_dt, msg)
                 send_message_by_line_notify(msg)
 
