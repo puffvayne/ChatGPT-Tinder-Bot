@@ -20,15 +20,15 @@ load_dotenv(PROJECT_DIR / 'local_settings/local.env')
 TINDER_TOKEN = os.getenv('TINDER_TOKEN')
 
 
-def get_tinder_api():
-    try:
-        return TinderAPI(TINDER_TOKEN)
-    except Exception as e:
-        msg = f"Failed to login with TD api, might need to update token"
-        print(f"{msg}, Error: {e}")
-
-        line_notify_message(msg)
-
-
-tinder_api = get_tinder_api()
-print(f"tinder_api = {tinder_api}")
+# def get_tinder_api():
+#     try:
+#         return TinderAPI(TINDER_TOKEN)
+#     except Exception as e:
+#         msg = f"Failed to login with TD api, might need to update token"
+#         print(f"{msg}, Error: {e}")
+#
+#         line_notify_message(msg)
+#
+#
+# tinder_api = get_tinder_api()
+# print(f"tinder_api = {tinder_api}")

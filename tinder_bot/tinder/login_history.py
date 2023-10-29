@@ -16,6 +16,10 @@ class LoginHistory:
             return True
 
         td = curr_dt - self.last_fln_dt
+        print('!!!!!!!!!!!!!!!!!!!!')
+        print(f"curr_dt: {curr_dt}")
+        print(f"last_fln_dt: {self.last_fln_dt}")
+
         if td.total_seconds() > 60 * minutes:
             return True
         else:
